@@ -36,16 +36,6 @@ const currentPath = Astro.url.pathname;
             Work
           </a>
           <a 
-            href="/experience" 
-            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              currentPath === '/experience' 
-                ? 'bg-primary-100 text-primary-700' 
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-            }`}
-          >
-            Experience
-          </a>
-          <a 
             href="/about" 
             class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
               currentPath === '/about' 
@@ -91,7 +81,6 @@ const currentPath = Astro.url.pathname;
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
       <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Home</a>
       <a href="/work" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Work</a>
-      <a href="/experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Experience</a>
       <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">About</a>
       <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Contact</a>
     </div>

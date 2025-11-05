@@ -1,21 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import experienceData from '../../data/experience.json';
+
+const { experiences } = experienceData;
 ---
 
 <Layout title="About - Jake Barger Portfolio">
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-white py-20">
+  <section id="bio" class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="text-4xl md:text-5xl font-bold mb-6">About Jake</h1>
           <p class="text-xl text-gray-300 mb-6">
-            Sports Design & Photography Professional
+            Creative Professional | Sports Design & Digital Media
           </p>
           <p class="text-lg text-gray-400 leading-relaxed">
-            Passionate about creating compelling visual content that elevates collegiate athletics. 
-            Currently serving as Graphic Designer & Photographer for SJSU Athletics, with previous 
-            experience at Cal Football.
+            I'm a creative professional with a background in sports design, photography, and digital media. 
+            My journey started on the sidelines—capturing and designing for collegiate athletics—before 
+            expanding into comprehensive brand management and visual storytelling. I'm passionate about 
+            creating visuals and content that connect people, tell stories, and make ideas feel real.
           </p>
         </div>
         
@@ -39,49 +43,109 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Story Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Career Timeline Section -->
+  <section id="timeline" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">My Story</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Career Timeline</h2>
         <p class="text-lg text-gray-600">
-          The journey from student intern to leading sports design professional.
+          Professional growth through increasingly responsible roles in collegiate athletics.
         </p>
       </div>
 
-      <div class="prose prose-lg max-w-none">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4">The Beginning</h3>
-            <p class="text-gray-700 mb-6 leading-relaxed">
-              My journey in sports design began as a student intern with SJSU Football in 2020. 
-              What started as a learning opportunity quickly became a passion for creating visual 
-              content that captures the energy and excitement of collegiate athletics.
-            </p>
+      <!-- Timeline Cards -->
+      <div class="space-y-12 max-w-5xl mx-auto">
+        {experiences.map((experience, index) => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+            <div class="bg-primary-600 text-white p-6">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold mb-1">{experience.title}</h3>
+                  <h4 class="text-xl opacity-90 mb-2">{experience.organization}</h4>
+                  <div class="text-primary-100">{experience.duration} • {experience.location}</div>
+                </div>
+              </div>
+            </div>
             
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Growth & Development</h3>
-            <p class="text-gray-700 mb-6 leading-relaxed">
-              After gaining foundational experience, I moved to Cal Football as a Graphic Designer, 
-              where I developed my skills in campaign creation, recruiting materials, and 
-              statistical visualizations. This role taught me the importance of consistency 
-              and brand alignment in sports marketing.
-            </p>
+            <div class="p-6">
+              <p class="text-lg text-gray-700 mb-6 leading-relaxed">{experience.description}</p>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Responsibilities -->
+                <div>
+                  <h5 class="text-lg font-semibold text-gray-900 mb-4">Key Responsibilities</h5>
+                  <ul class="space-y-3">
+                    {experience.responsibilities.map((responsibility) => (
+                      <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-gray-700">{responsibility}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <!-- Achievements & Skills -->
+                <div>
+                  {experience.achievements && experience.achievements.length > 0 && (
+                    <div class="mb-6">
+                      <h5 class="text-lg font-semibold text-gray-900 mb-4">Notable Achievements</h5>
+                      <ul class="space-y-2">
+                        {experience.achievements.map((achievement) => (
+                          <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-700">{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  <div>
+                    <h5 class="text-lg font-semibold text-gray-900 mb-4">Skills Developed</h5>
+                    <div class="flex flex-wrap gap-2">
+                      {experience.skills.map((skill) => (
+                        <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Current Focus</h3>
-            <p class="text-gray-700 mb-6 leading-relaxed">
-              Now at SJSU Athletics, I serve as both Graphic Designer and Photographer, 
-              covering 17+ sports teams. This role allows me to combine my design expertise 
-              with photography skills, creating comprehensive visual packages for each program.
-            </p>
-            
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Philosophy</h3>
-            <p class="text-gray-700 leading-relaxed">
-              I believe great sports design should capture the emotion, energy, and pride 
-              of athletic competition. Every graphic, poster, or photograph should tell a story 
-              and connect with fans on an emotional level.
-            </p>
+        ))}
+      </div>
+
+      <!-- Stats Cards - SJSU Specific -->
+      <div class="mt-16 max-w-5xl mx-auto">
+        <div class="bg-gradient-to-br from-primary-50 to-blue-50 rounded-lg p-8 border border-primary-200">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Impact at SJSU Athletics</h3>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div class="text-3xl font-bold text-primary-600 mb-2">250+</div>
+              <div class="text-gray-600 text-sm">Games & Events Covered</div>
+              <p class="text-xs text-gray-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Photography & design for live sporting events</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div class="text-3xl font-bold text-primary-600 mb-2">20+</div>
+              <div class="text-gray-600 text-sm">Sports Programs Supported</div>
+              <p class="text-xs text-gray-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Comprehensive coverage across all Division I sports</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div class="text-3xl font-bold text-primary-600 mb-2">1.5M+</div>
+              <div class="text-gray-600 text-sm">Social Impressions Generated</div>
+              <p class="text-xs text-gray-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Reaching fans across multiple platforms</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div class="text-3xl font-bold text-primary-600 mb-2">20</div>
+              <div class="text-gray-600 text-sm">Student Interns Managed</div>
+              <p class="text-xs text-gray-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Mentoring next generation of sports creatives</p>
+            </div>
           </div>
         </div>
       </div>
@@ -89,88 +153,228 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Skills & Approach -->
-  <section class="py-20 bg-gray-50">
+  <section id="skills" class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Skills & Approach</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Skills & Focus Areas</h2>
         <p class="text-lg text-gray-600">
-          The tools and methodologies that drive successful sports design projects.
+          Comprehensive expertise developed through diverse roles in collegiate athletics and digital media.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Design Skills -->
-        <div class="bg-white rounded-lg p-6 shadow-sm">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Primary Skill Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">Design Expertise</h3>
-          <p class="text-gray-600 mb-4">Proficient in Adobe Creative Suite with focus on rapid turnaround and brand consistency.</p>
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between">
-              <span class="text-gray-700">Adobe Photoshop</span>
-              <span class="text-gray-500">Expert</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">Adobe Illustrator</span>
-              <span class="text-gray-500">Expert</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">Adobe InDesign</span>
-              <span class="text-gray-500">Advanced</span>
-            </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Sports Design</h3>
+          <p class="text-gray-600 text-sm mb-3">Game graphics, recruiting materials, brand systems</p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded">Game Day</span>
+            <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded">Recruiting</span>
           </div>
         </div>
 
-        <!-- Photography Skills -->
-        <div class="bg-white rounded-lg p-6 shadow-sm">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Branding</h3>
+          <p class="text-gray-600 text-sm mb-3">Visual identity, style guides, brand consistency</p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span class="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Identity</span>
+            <span class="px-2 py-1 bg-green-50 text-green-700 text-xs rounded">Guidelines</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">Photography</h3>
-          <p class="text-gray-600 mb-4">Specialized in sports action photography and event coverage for multiple sports.</p>
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between">
-              <span class="text-gray-700">Action Photography</span>
-              <span class="text-gray-500">Expert</span>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Photography</h3>
+          <p class="text-gray-600 text-sm mb-3">Sports action, event coverage, photo editing</p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded">Action</span>
+            <span class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded">Events</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">UX Design</h3>
+          <p class="text-gray-600 text-sm mb-3">User interfaces, prototyping, design systems</p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded">UI/UX</span>
+            <span class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded">Figma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Skills -->
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-xl font-semibold text-gray-900 mb-6 text-center">Additional Expertise</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <span class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Social Media Strategy</span>
+            <span class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Front-End Development</span>
+            <span class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Content Creation</span>
+            <span class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Campaign Management</span>
+            <span class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Team Leadership</span>
+            <span class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Video Editing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Tools -->
+  <section id="education" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        
+        <!-- Education -->
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Education</h2>
+          
+          <div class="space-y-6">
+            <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-primary-600">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-1">San José State University</h3>
+                  <p class="text-primary-600 font-medium mb-2">Bachelor of Arts in Graphic Design</p>
+                  <p class="text-gray-600 text-sm">2018 - 2022</p>
+                  <p class="text-gray-700 mt-3 text-sm">
+                    Focus on visual communication, typography, and digital design with emphasis on 
+                    brand development and user experience.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">Event Coverage</span>
-              <span class="text-gray-500">Advanced</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">Photo Editing</span>
-              <span class="text-gray-500">Expert</span>
+
+            <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-blue-600">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-1">Professional Development</h3>
+                  <p class="text-blue-600 font-medium mb-2">Continuous Learning</p>
+                  <p class="text-gray-700 text-sm">
+                    Regular courses in UX/UI design, front-end development (HTML/CSS), Figma advanced techniques, 
+                    and emerging design tools to stay current with industry trends.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Project Management -->
-        <div class="bg-white rounded-lg p-6 shadow-sm">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">Project Management</h3>
-          <p class="text-gray-600 mb-4">Efficient workflow management for time-sensitive sports content and campaigns.</p>
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between">
-              <span class="text-gray-700">Rapid Turnaround</span>
-              <span class="text-gray-500">Expert</span>
+        <!-- Tools & Software -->
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Tools & Software</h2>
+          
+          <div class="space-y-6">
+            <!-- Design Tools -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Design & Editing</h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">Adobe Photoshop</span>
+                    <span class="text-sm text-gray-600">Expert</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary-600 h-2 rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">Adobe Illustrator</span>
+                    <span class="text-sm text-gray-600">Expert</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary-600 h-2 rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">Figma</span>
+                    <span class="text-sm text-gray-600">Advanced</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary-600 h-2 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">Adobe InDesign</span>
+                    <span class="text-sm text-gray-600">Advanced</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary-600 h-2 rounded-full" style="width: 80%"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">Multi-Sport Coordination</span>
-              <span class="text-gray-500">Advanced</span>
+
+            <!-- Development Tools -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Development</h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">HTML & CSS</span>
+                    <span class="text-sm text-gray-600">Proficient</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">Astro & Frameworks</span>
+                    <span class="text-sm text-gray-600">Intermediate</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 65%"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">Brand Consistency</span>
-              <span class="text-gray-500">Expert</span>
+
+            <!-- Other Tools -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Additional Tools</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded">Adobe Lightroom</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded">Premiere Pro</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded">After Effects</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded">Canva</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded">Git/GitHub</span>
+              </div>
             </div>
           </div>
         </div>
@@ -178,77 +382,24 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Values & Interests -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <!-- Values -->
-        <div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">Core Values</h2>
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Excellence in Every Detail</h3>
-                <p class="text-gray-600">Every project deserves meticulous attention to design, timing, and brand alignment.</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Collaborative Spirit</h3>
-                <p class="text-gray-600">Working closely with coaches, athletes, and marketing teams to achieve shared goals.</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Continuous Innovation</h3>
-                <p class="text-gray-600">Always exploring new techniques and approaches to stay ahead in sports design.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interests -->
-        <div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-8">Beyond Work</h2>
-          <div class="space-y-6">
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Sports Enthusiasm</h3>
-              <p class="text-gray-600">Passionate fan of collegiate athletics, particularly football and basketball. This genuine love for sports drives authentic design work.</p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Design Trends</h3>
-              <p class="text-gray-600">Constantly studying emerging design trends, typography, and visual communication techniques to bring fresh ideas to sports marketing.</p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Technology</h3>
-              <p class="text-gray-600">Exploring new design software, photography equipment, and digital tools that can enhance the creative process and final output.</p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Community</h3>
-              <p class="text-gray-600">Active in the design community, sharing knowledge and learning from other creative professionals in the sports industry.</p>
-            </div>
-          </div>
-        </div>
+  <!-- Personal Touch Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">A Little About Me</h2>
+      </div>
+      
+      <div class="bg-white rounded-lg p-8 shadow-sm">
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          Beyond the professional work, I'm genuinely passionate about sports, design culture, and the 
+          intersection of creativity and technology. I believe the best work comes from understanding 
+          both the emotional heart of sports and the technical excellence of visual communication.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          When I'm not designing or photographing, you'll find me watching games, exploring new design 
+          trends, experimenting with code, or seeking out creative inspiration in unexpected places. 
+          I'm always looking for the next project that challenges me to grow and create something meaningful.
+        </p>
       </div>
     </div>
   </section>
@@ -271,3 +422,27 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<script>
+  // Smooth scrolling for anchor links
+  document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+      link.addEventListener('click', function(e: Event) {
+        const target = e.currentTarget as HTMLAnchorElement;
+        const href = target.getAttribute('href');
+        if (href && href !== '#' && href.startsWith('#')) {
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
