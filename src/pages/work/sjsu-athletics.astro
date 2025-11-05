@@ -8,116 +8,44 @@ import schedulePosters from '../../../data/sjsu-athletics/schedule-posters.json'
 import gamedayContent from '../../../data/sjsu-athletics/gameday-content.json';
 import performanceHighlights from '../../../data/sjsu-athletics/performance-highlights.json';
 
-// Helper function to process projects and subprojects
-function processProjects(dataCategory) {
-  const allProjects = [];
-  
-  dataCategory.projects.forEach(project => {
-    if (project.subprojects) {
-      // Handle projects with subprojects - create individual projects for each subproject
-      project.subprojects.forEach(subproject => {
-        allProjects.push({
-          id: `${project.title.toLowerCase().replace(/\s+/g, '-')}-${subproject.title.toLowerCase().replace(/\s+/g, '-')}`,
-          title: `${project.title} - ${subproject.title}`,
-          description: `${project.description} - ${subproject.title}`,
-          tags: [...new Set(subproject.images.flatMap(img => img.tags || []))],
-          images: subproject.images,
-          year: 2023,
-          featured: false
-        });
-      });
-    } else {
-      // Handle flat projects (just images)
-      allProjects.push({
-        id: project.title.toLowerCase().replace(/\s+/g, '-'),
-        title: project.title,
-        description: project.description,
-        tags: [...new Set(project.images.flatMap(img => img.tags || []))],
-        images: project.images,
-        year: 2023,
-        featured: false
-      });
-    }
-  });
-  
-  return allProjects;
-}
-
-// Combine all SJSU projects
-const allSJSUProjects = [
-  ...processProjects(performanceHighlights),
-  ...processProjects(schedulePosters),
-  ...processProjects(gamedayContent)
-];
-
-// Categories for navigation
+// All categories for navigation
 const categories = [
-  { name: "Performance Highlights", data: performanceHighlights, id: "performance" },
-  { name: "Schedule Posters", data: schedulePosters, id: "schedules" },
-  { name: "Gameday Content", data: gamedayContent, id: "gameday" }
-]; 
-      projects: [{
-        id: 'sjsu-performance-highlights',
-        title: performanceHighlights.category,
-        description: performanceHighlights.description,
-        tags: [...new Set(performanceHighlights.images.flatMap(img => img.tags || []))],
-        images: performanceHighlights.images.map(img => ({ src: img.src, alt: img.alt })),
-        year: 2023,
-        featured: performanceHighlights.images.some(img => img.featured)
-      }]
-    }, 
-    id: "performance" 
+  { 
+    name: "Performance Highlights", 
+    data: performanceHighlights, 
+    id: "performance",
+    type: "flat" // This category has images directly
   },
   { 
-    name: "Promotional & Social Media", 
-    data: { 
-      ...socialPromo, 
-      projects: socialPromo.projects.map(item => ({
-        id: `social-${item.src.split('/').pop().split('.')[0]}`,
-        title: item.alt,
-        description: item.alt,
-        tags: item.tags,
-        images: [{ src: item.src, alt: item.alt }],
-        year: item.year,
-        featured: item.featured
-      }))
-    }, 
-    id: "social" 
+    name: "Schedule Posters", 
+    data: schedulePosters, 
+    id: "schedules",
+    type: "nested" // This category has subprojects
   },
   { 
-    name: "Photography Highlights", 
-    data: { 
-      ...photography, 
-      projects: photography.projects.map(item => ({
-        id: `photo-${item.src.split('/').pop().split('.')[0]}`,
-        title: item.alt,
-        description: item.alt,
-        tags: item.tags,
-        images: [{ src: item.src, alt: item.alt }],
-        year: item.year,
-        featured: item.featured
-      }))
-    }, 
-    id: "photography" 
+    name: "Gameday Content", 
+    data: gamedayContent, 
+    id: "gameday",
+    type: "flat" // This category has images directly
   }
 ];
 
 // Sample highlight images for hero
 const heroImages = [
   {
-    src: "/images/sjsu/highlights/hero-1.jpg",
+    src: "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_BlockParty_Fall2023.jpg",
     alt: "SJSU Athletics Design Work",
-    caption: "Gameday Graphics Collection"
+    caption: "Performance Highlights"
   },
   {
-    src: "/images/sjsu/highlights/hero-2.jpg", 
+    src: "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_Football_SchedulePoster_Fall2023.jpg", 
     alt: "SJSU Schedule Poster",
-    caption: "Fall Schedule Posters"
+    caption: "Schedule Poster Series"
   },
   {
-    src: "/images/sjsu/highlights/hero-3.jpg",
-    alt: "SJSU Awards Graphic",
-    caption: "Student-Athlete Recognition"
+    src: "/images/sjsu-athletics/gameday-content/SJSU_Baseball_Template_Gameday-web_2023.jpg",
+    alt: "SJSU Gameday Content",
+    caption: "Gameday Templates"
   }
 ];
 ---
@@ -201,7 +129,10 @@ const heroImages = [
             <p class="text-gray-600 mb-4">{category.data.description}</p>
             <div class="flex justify-between items-center">
               <span class="text-sm text-gray-500">
-                {category.data.projects.length} project{category.data.projects.length !== 1 ? 's' : ''}
+                {category.type === 'nested' 
+                  ? `${category.data.projects[0]?.subprojects?.length || 0} subproject${(category.data.projects[0]?.subprojects?.length || 0) !== 1 ? 's' : ''}`
+                  : `${category.data.projects[0]?.images?.length || 0} image${(category.data.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}`
+                }
               </span>
               <a 
                 href={`#${category.id}`} 
@@ -219,26 +150,9 @@ const heroImages = [
     </div>
   </section>
 
-  <!-- Featured Projects -->
-  <section id="featured" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-        <p class="text-lg text-gray-600">
-          Highlighting the best work from each category.
-        </p>
-      </div>
-      
-      <ProjectGrid 
-        projects={allSJSUProjects.filter(p => p.featured)} 
-        showFilters={false}
-      />
-    </div>
-  </section>
-
   <!-- Category Sections -->
   {categories.map((category) => (
-    <section id={category.id} class="py-16 bg-gray-50 border-t">
+    <section id={category.id} class="py-16 bg-white border-t">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">{category.name}</h2>
@@ -247,30 +161,42 @@ const heroImages = [
           </p>
         </div>
         
-        <ProjectGrid 
-          projects={category.data.projects} 
-          showFilters={false}
-        />
+        {category.type === 'nested' ? (
+          <!-- Nested projects with subprojects -->
+          <div class="space-y-16">
+            {category.data.projects[0]?.subprojects?.map((subproject) => (
+              <div class="bg-gray-50 rounded-lg p-8">
+                <div class="text-center mb-8">
+                  <h3 class="text-2xl font-semibold text-gray-900 mb-2">{subproject.title}</h3>
+                  <p class="text-gray-600">{subproject.images?.length || 0} image{(subproject.images?.length || 0) !== 1 ? 's' : ''}</p>
+                </div>
+                <Gallery 
+                  images={subproject.images || []} 
+                  columns={3} 
+                  lightbox={true} 
+                  showCaptions={true}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <!-- Flat projects with direct images -->
+          <div class="bg-gray-50 rounded-lg p-8">
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-2">{category.data.projects[0]?.title}</h3>
+              <p class="text-gray-600">{category.data.projects[0]?.images?.length || 0} image{(category.data.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}</p>
+            </div>
+            <Gallery 
+              images={category.data.projects[0]?.images || []} 
+              columns={3} 
+              lightbox={true} 
+              showCaptions={true}
+            />
+          </div>
+        )}
       </div>
     </section>
   ))}
-
-  <!-- All Projects with Filters -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">All SJSU Projects</h2>
-        <p class="text-lg text-gray-600">
-          Browse the complete collection with advanced filtering.
-        </p>
-      </div>
-      
-      <ProjectGrid 
-        projects={allSJSUProjects} 
-        showFilters={true}
-      />
-    </div>
-  </section>
 
   <!-- Call to Action -->
   <section class="py-16 bg-blue-900 text-white">

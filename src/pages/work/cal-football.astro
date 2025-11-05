@@ -9,73 +9,50 @@ import gameWeekContent from '../../../data/cal-football/game-week-content.json';
 import recruitingContent from '../../../data/cal-football/recruiting-content.json';
 import nflDraftContent from '../../../data/cal-football/nfl-draft-content.json';
 
-// Helper function to process projects and subprojects
-function processProjects(dataCategory) {
-  const allProjects = [];
-  
-  dataCategory.projects.forEach(project => {
-    if (project.subprojects) {
-      // Handle projects with subprojects - create individual projects for each subproject
-      project.subprojects.forEach(subproject => {
-        allProjects.push({
-          id: `${project.title.toLowerCase().replace(/\s+/g, '-')}-${subproject.title.toLowerCase().replace(/\s+/g, '-')}`,
-          title: `${project.title} - ${subproject.title}`,
-          description: `${project.description} - ${subproject.title}`,
-          tags: [...new Set(subproject.images.flatMap(img => img.tags || []))],
-          images: subproject.images,
-          year: 2022,
-          featured: false
-        });
-      });
-    } else {
-      // Handle flat projects (just images)
-      allProjects.push({
-        id: project.title.toLowerCase().replace(/\s+/g, '-'),
-        title: project.title,
-        description: project.description,
-        tags: [...new Set(project.images.flatMap(img => img.tags || []))],
-        images: project.images,
-        year: 2022,
-        featured: false
-      });
-    }
-  });
-  
-  return allProjects;
-}
-
-// Combine all Cal projects
-const allCalProjects = [
-  ...processProjects(performanceHighlights),
-  ...processProjects(gameWeekContent),
-  ...processProjects(recruitingContent),
-  ...processProjects(nflDraftContent)
-];
-
-// Categories for navigation
+// All categories for navigation
 const categories = [
-  { name: "Performance Highlights", data: performanceHighlights, id: "performance" },
-  { name: "Game Week Content", data: gameWeekContent, id: "gameweek" },
-  { name: "Recruiting Content", data: recruitingContent, id: "recruiting" },
-  { name: "NFL Draft Content", data: nflDraftContent, id: "nfl-draft" }
+  { 
+    name: "Performance Highlights", 
+    data: performanceHighlights, 
+    id: "performance",
+    type: "flat" // This category has images directly
+  },
+  { 
+    name: "Game Week Content", 
+    data: gameWeekContent, 
+    id: "gameweek",
+    type: "nested" // This category has subprojects
+  },
+  { 
+    name: "Recruiting Content", 
+    data: recruitingContent, 
+    id: "recruiting",
+    type: "nested" // This category has subprojects
+  },
+  { 
+    name: "NFL Draft Content", 
+    data: nflDraftContent, 
+    id: "nfl-draft",
+    type: "flat" // This category has images directly
+  }
 ];
 
 // Sample highlight images for hero
 const heroImages = [
   {
-    src: "/images/cal-football/highlights/hero-1.jpg",
-    alt: "Cal Football Game Poster",
-    caption: "Big Game Campaign"
+    src: "/images/cal-football/performance-highlights-cal/CAL_Football_BigGame_VictoryGraphic_2022.jpg",
+    alt: "Cal Football Big Game Victory",
+    caption: "Big Game Victory"
   },
   {
-    src: "/images/cal-football/highlights/hero-2.jpg", 
+    src: "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Brown_2022.jpg", 
     alt: "Cal Football Recruiting Graphic",
     caption: "National Signing Day"
   },
   {
-    src: "/images/cal-football/highlights/hero-3.jpg",
-    alt: "Cal Football Victory Graphic",
-    caption: "Victory Celebration"
+    src: "/images/cal-football/game-week-content/matchup-posters/CAL_FB_MatchupPoster_Arizona_2022.jpg",
+    alt: "Cal Football Matchup Poster",
+    caption: "Game Week Content"
   }
 ];
 ---
@@ -201,7 +178,10 @@ const heroImages = [
             <p class="text-gray-600 mb-4">{category.data.description}</p>
             <div class="flex justify-between items-center">
               <span class="text-sm text-gray-500">
-                {category.data.projects.length} project{category.data.projects.length !== 1 ? 's' : ''}
+                {category.type === 'nested' 
+                  ? `${category.data.projects[0]?.subprojects?.length || 0} subproject${(category.data.projects[0]?.subprojects?.length || 0) !== 1 ? 's' : ''}`
+                  : `${category.data.projects[0]?.images?.length || 0} image${(category.data.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}`
+                }
               </span>
               <a 
                 href={`#${category.id}`} 
@@ -219,26 +199,9 @@ const heroImages = [
     </div>
   </section>
 
-  <!-- Featured Projects -->
-  <section id="featured" class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-        <p class="text-lg text-gray-600">
-          Highlighting the best work from each category.
-        </p>
-      </div>
-      
-      <ProjectGrid 
-        projects={allCalProjects.filter(p => p.featured)} 
-        showFilters={false}
-      />
-    </div>
-  </section>
-
   <!-- Category Sections -->
   {categories.map((category) => (
-    <section id={category.id} class="py-16 bg-white border-t">
+    <section id={category.id} class="py-16 bg-gray-50 border-t">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">{category.name}</h2>
@@ -247,30 +210,42 @@ const heroImages = [
           </p>
         </div>
         
-        <ProjectGrid 
-          projects={category.data.projects} 
-          showFilters={false}
-        />
+        {category.type === 'nested' ? (
+          <!-- Nested projects with subprojects -->
+          <div class="space-y-16">
+            {category.data.projects[0]?.subprojects?.map((subproject) => (
+              <div class="bg-white rounded-lg p-8 shadow-sm">
+                <div class="text-center mb-8">
+                  <h3 class="text-2xl font-semibold text-gray-900 mb-2">{subproject.title}</h3>
+                  <p class="text-gray-600">{subproject.images?.length || 0} image{(subproject.images?.length || 0) !== 1 ? 's' : ''}</p>
+                </div>
+                <Gallery 
+                  images={subproject.images || []} 
+                  columns={3} 
+                  lightbox={true} 
+                  showCaptions={true}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <!-- Flat projects with direct images -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-2">{category.data.projects[0]?.title}</h3>
+              <p class="text-gray-600">{category.data.projects[0]?.images?.length || 0} image{(category.data.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}</p>
+            </div>
+            <Gallery 
+              images={category.data.projects[0]?.images || []} 
+              columns={3} 
+              lightbox={true} 
+              showCaptions={true}
+            />
+          </div>
+        )}
       </div>
     </section>
   ))}
-
-  <!-- All Projects with Filters -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">All Cal Football Projects</h2>
-        <p class="text-lg text-gray-600">
-          Browse the complete collection with advanced filtering.
-        </p>
-      </div>
-      
-      <ProjectGrid 
-        projects={allCalProjects} 
-        showFilters={true}
-      />
-    </div>
-  </section>
 
   <!-- Call to Action -->
   <section class="py-16 bg-yellow-900 text-white">

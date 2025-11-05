@@ -106,7 +106,7 @@ const allSports = [...new Set(projects.flatMap(p => p.sports || []))].filter(Boo
         <!-- Clickable Project Image -->
         <div 
           class="relative h-48 bg-gray-200 cursor-pointer group"
-          onclick={`openProjectGallery('${project.id}', '${project.title}', ${JSON.stringify(project.images).replace(/"/g, '&quot;')})`}
+          onclick={`openProjectGallery('${project.id}', '${(project.title || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.images || []).replace(/"/g, '&quot;')})`}
         >
           {project.images[0] ? (
             <img 
@@ -163,7 +163,7 @@ const allSports = [...new Set(projects.flatMap(p => p.sports || []))].filter(Boo
           {(project.images || []).length > 1 && (
             <div class="mt-3 text-center">
               <button 
-                onclick={`openProjectGallery('${project.id}', '${project.title}', ${JSON.stringify(project.images).replace(/"/g, '&quot;')})`}
+                onclick={`openProjectGallery('${project.id}', '${(project.title || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.images || []).replace(/"/g, '&quot;')})`}
                 class="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
               >
                 Click to view all {(project.images || []).length} images →
