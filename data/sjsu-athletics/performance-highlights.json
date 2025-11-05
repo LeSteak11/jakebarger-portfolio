@@ -1,6 +1,7 @@
 {
   "category": "Performance Highlights",
   "description": "Awards, achievements, and statistical graphics from SJSU Athletics.",
+  "tags": ["awards", "milestones", "stat graphics", "branding"],
   "projects": [
     {
       "title": "Performance Highlights (SJSU)",
@@ -8,8 +9,7 @@
       "images": [
         {
           "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_Coach100Wins_2023.jpg",
-          "alt": "SJSU Baseball Coach 100 Wins 2023",
-          "tags": ["baseball", "awards", "milestones"]
+          "alt": "SJSU Baseball Coach 100 Wins 2023"
         },
         {
           "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_ColettePOTW-IG_2023.jpg",

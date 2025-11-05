@@ -71,6 +71,9 @@ const allCollections = [
     color: "yellow"
   }
 ];
+
+// Get all unique tags from collections
+const allTags = [...new Set(allCollections.flatMap(collection => collection.data.tags || []))].sort();
 ---
 
 <Layout title="Work - Jake Barger Portfolio">
@@ -190,6 +193,31 @@ const allCollections = [
         </p>
       </div>
       
+      <!-- Tag Filter Interface -->
+      <div class="mb-8">
+        <div class="text-center mb-4">
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Filter by theme or content type:</h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            <button 
+              id="tag-all" 
+              class="px-3 py-2 bg-gray-900 text-white text-sm rounded-full font-medium hover:bg-gray-800 transition-colors"
+              onclick="filterCollections('')"
+            >
+              All Collections
+            </button>
+            {allTags.map((tag) => (
+              <button 
+                class="px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded-full font-medium hover:bg-gray-200 transition-colors tag-filter"
+                data-tag={tag}
+                onclick={`filterCollections('${tag}')`}
+              >
+                {tag.charAt(0).toUpperCase() + tag.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {allCollections.map((collection) => {
           // Get thumbnail image
@@ -198,7 +226,10 @@ const allCollections = [
             : collection.data.projects[0]?.images?.[0];
             
           return (
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+            <div 
+              class="collection-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+              data-tags={JSON.stringify(collection.data.tags || [])}
+            >
               <!-- Thumbnail -->
               <div class="relative h-48 bg-gray-200 overflow-hidden">
                 {thumbnail ? (
@@ -237,6 +268,21 @@ const allCollections = [
                 }`}>
                   {collection.name}
                 </h3>
+                
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1 mb-3">
+                  {collection.data.tags?.slice(0, 4).map((tag, index) => (
+                    <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full hover:bg-gray-200 transition-colors cursor-pointer font-medium">
+                      {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                    </span>
+                  ))}
+                  {collection.data.tags?.length > 4 && (
+                    <span class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full font-medium">
+                      +{collection.data.tags.length - 4} more
+                    </span>
+                  )}
+                </div>
+                
                 <p class="text-gray-600 mb-4 text-sm leading-relaxed">{collection.data.description}</p>
                 
                 <!-- Meta Info -->
@@ -295,4 +341,67 @@ const allCollections = [
       </div>
     </div>
   </section>
+
+  <!-- Tag Filtering JavaScript -->
+  <script>
+    function filterCollections(selectedTag) {
+      const cards = document.querySelectorAll('.collection-card');
+      const filterButtons = document.querySelectorAll('.tag-filter, #tag-all');
+      
+      // Update button states
+      filterButtons.forEach(button => {
+        if (selectedTag === '' && button.id === 'tag-all') {
+          button.classList.remove('bg-gray-100', 'text-gray-700');
+          button.classList.add('bg-gray-900', 'text-white');
+        } else if (selectedTag !== '' && button.dataset.tag === selectedTag) {
+          button.classList.remove('bg-gray-100', 'text-gray-700');
+          button.classList.add('bg-gray-900', 'text-white');
+        } else {
+          button.classList.remove('bg-gray-900', 'text-white');
+          button.classList.add('bg-gray-100', 'text-gray-700');
+        }
+      });
+      
+      // Filter cards
+      cards.forEach(card => {
+        const cardTags = JSON.parse(card.dataset.tags || '[]');
+        const shouldShow = selectedTag === '' || cardTags.includes(selectedTag);
+        
+        if (shouldShow) {
+          card.style.display = 'block';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          
+          // Animate in
+          setTimeout(() => {
+            card.style.transition = 'all 0.3s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          card.style.transition = 'all 0.3s ease';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(-20px)';
+          
+          // Hide after animation
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+    
+    // Add click handlers for tag pills in cards
+    document.addEventListener('DOMContentLoaded', function() {
+      const tagPills = document.querySelectorAll('.collection-card .px-2.py-1.bg-gray-100');
+      tagPills.forEach(pill => {
+        pill.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const tagText = this.textContent.toLowerCase();
+          filterCollections(tagText);
+        });
+      });
+    });
+  </script>
 </Layout>
