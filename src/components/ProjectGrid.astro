@@ -8,10 +8,10 @@ export interface Props {
     images: Array<{
       src: string;
       alt: string;
-      caption: string;
+      caption?: string;
     }>;
     year: number;
-    sports: string[];
+    sports?: string[];
     featured: boolean;
   }>;
   title?: string;
@@ -20,9 +20,9 @@ export interface Props {
 
 const { projects, title, showFilters = false } = Astro.props;
 
-// Get unique tags and sports for filtering
-const allTags = [...new Set(projects.flatMap(p => p.tags))];
-const allSports = [...new Set(projects.flatMap(p => p.sports))];
+// Get unique tags and sports for filtering (handle optional sports)
+const allTags = [...new Set(projects.flatMap(p => p.tags || []))];
+const allSports = [...new Set(projects.flatMap(p => p.sports || []))].filter(Boolean);
 ---
 
 <div class="project-grid-container">
@@ -47,15 +47,17 @@ const allSports = [...new Set(projects.flatMap(p => p.sports))];
         </div>
 
         <!-- Sport Filters -->
-        <div class="flex-1 min-w-64">
-          <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Sport</label>
-          <select class="sport-filter w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
-            <option value="">All Sports</option>
-            {allSports.map(sport => (
-              <option value={sport}>{sport.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
-            ))}
-          </select>
-        </div>
+        {allSports.length > 0 && (
+          <div class="flex-1 min-w-64">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Sport</label>
+            <select class="sport-filter w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+              <option value="">All Sports</option>
+              {allSports.map(sport => (
+                <option value={sport}>{sport.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <!-- Year Filter -->
         <div class="flex-1 min-w-32">
@@ -86,8 +88,8 @@ const allSports = [...new Set(projects.flatMap(p => p.sports))];
     {projects.map((project) => (
       <div 
         class="project-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-        data-tags={project.tags.join(',')}
-        data-sports={project.sports.join(',')}
+        data-tags={(project.tags || []).join(',')}
+        data-sports={(project.sports || []).join(',')}
         data-year={project.year}
         data-featured={project.featured}
       >
@@ -126,14 +128,14 @@ const allSports = [...new Set(projects.flatMap(p => p.sports))];
           
           <!-- Tags -->
           <div class="flex flex-wrap gap-2 mb-4">
-            {project.tags.slice(0, 3).map(tag => (
+            {(project.tags || []).slice(0, 3).map(tag => (
               <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
                 {tag.replace('-', ' ')}
               </span>
             ))}
-            {project.tags.length > 3 && (
+            {(project.tags || []).length > 3 && (
               <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                +{project.tags.length - 3} more
+                +{(project.tags || []).length - 3} more
               </span>
             )}
           </div>
@@ -141,7 +143,7 @@ const allSports = [...new Set(projects.flatMap(p => p.sports))];
           <!-- Meta Info -->
           <div class="flex justify-between items-center text-sm text-gray-500">
             <span>{project.year}</span>
-            <span>{project.images.length} image{project.images.length !== 1 ? 's' : ''}</span>
+            <span>{(project.images || []).length} image{(project.images || []).length !== 1 ? 's' : ''}</span>
           </div>
         </div>
       </div>

@@ -3,107 +3,107 @@
   "description": "Awards, achievements, and statistical graphics.",
   "images": [
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_Coach100Wins_2023.jpg",
-      "alt": "Baseball Coach 100 Wins Achievement",
-      "tags": ["awards", "baseball", "milestone"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-001.jpg",
+      "alt": "SJSU Performance Highlight 1",
+      "tags": ["awards", "milestone", "achievement"],
       "year": 2023,
       "featured": true
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_ColettePOTW-IG_2023.jpg",
-      "alt": "Baseball Player of the Week - Colette",
-      "tags": ["awards", "baseball", "weekly"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-002.jpg",
+      "alt": "SJSU Performance Highlight 2",
+      "tags": ["awards", "weekly", "recognition"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_GYM_JaudaiSchoolRecord_2023.jpg",
-      "alt": "Gymnastics School Record - Jaudai",
-      "tags": ["records", "gymnastics", "achievement"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-003.jpg",
+      "alt": "SJSU Performance Highlight 3",
+      "tags": ["records", "achievement", "milestone"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MBB_Omari1k_2023.jpg",
-      "alt": "Men's Basketball 1000 Points - Omari",
-      "tags": ["milestone", "basketball", "records"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-004.jpg",
+      "alt": "SJSU Performance Highlight 4",
+      "tags": ["milestone", "records", "achievement"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MGolf_CorpusPOTW_2023.jpg",
-      "alt": "Men's Golf Player of the Week - Corpus",
-      "tags": ["awards", "golf", "weekly"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-005.jpg",
+      "alt": "SJSU Performance Highlight 5",
+      "tags": ["awards", "weekly", "recognition"],
       "year": 2023,
       "featured": true
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__AllMWPreseason_Fall2023.jpg",
-      "alt": "Men's Soccer All-MW Preseason Selection",
-      "tags": ["awards", "soccer", "preseason"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-006.jpg",
+      "alt": "SJSU Performance Highlight 6",
+      "tags": ["awards", "preseason", "selection"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__Clinched_Fall2023.jpg",
-      "alt": "Men's Soccer Tournament Qualification",
-      "tags": ["achievement", "soccer", "tournament"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-007.jpg",
+      "alt": "SJSU Performance Highlight 7",
+      "tags": ["achievement", "tournament", "qualification"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__SeniorDay_Fall2023.jpg",
-      "alt": "Men's Soccer Senior Day Celebration",
-      "tags": ["celebration", "soccer", "seniors"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-008.jpg",
+      "alt": "SJSU Performance Highlight 8",
+      "tags": ["celebration", "seniors", "special-day"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__SweeneySaves_Fall2023.jpg",
-      "alt": "Men's Soccer Goalkeeper Saves Record",
-      "tags": ["records", "soccer", "goalkeeper"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-009.jpg",
+      "alt": "SJSU Performance Highlight 9",
+      "tags": ["records", "saves", "goalkeeper"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__WACAward1_Fall2023.jpg",
-      "alt": "Men's Soccer WAC Conference Award",
-      "tags": ["awards", "soccer", "conference"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-010.jpg",
+      "alt": "SJSU Performance Highlight 10",
+      "tags": ["awards", "conference", "recognition"],
       "year": 2023,
       "featured": true
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Softball_FOTW-Noreiga_2023.jpg",
-      "alt": "Softball Fan of the Week - Noreiga",
-      "tags": ["recognition", "softball", "fans"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-011.jpg",
+      "alt": "SJSU Performance Highlight 11",
+      "tags": ["recognition", "fans", "community"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Softball_UlluegePOTW_2023.jpg",
-      "alt": "Softball Player of the Week - Ulluege",
-      "tags": ["awards", "softball", "weekly"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-012.jpg",
+      "alt": "SJSU Performance Highlight 12",
+      "tags": ["awards", "weekly", "recognition"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Tennis_AllMW-Millan_2023.jpg",
-      "alt": "Tennis All-MW Team Selection - Millan",
-      "tags": ["awards", "tennis", "conference"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-013.jpg",
+      "alt": "SJSU Performance Highlight 13",
+      "tags": ["awards", "conference", "team-selection"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Slusser-AllMW_Fall2023.jpg",
-      "alt": "Volleyball All-MW Selection - Slusser",
-      "tags": ["awards", "volleyball", "conference"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-014.jpg",
+      "alt": "SJSU Performance Highlight 14",
+      "tags": ["awards", "conference", "team-selection"],
       "year": 2023,
       "featured": false
     },
     {
-      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Tia-MWFreshman_Fall2023.jpg",
-      "alt": "Volleyball MW Freshman Award - Tia",
-      "tags": ["awards", "volleyball", "freshman"],
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/image-015.jpg",
+      "alt": "SJSU Performance Highlight 15",
+      "tags": ["awards", "freshman", "recognition"],
       "year": 2023,
       "featured": true
     }
