@@ -197,11 +197,11 @@ const allTags = [...new Set(allCollections.flatMap(collection => collection.data
       <div class="mb-8">
         <div class="text-center mb-4">
           <h3 class="text-sm font-medium text-gray-700 mb-3">Filter by theme or content type:</h3>
+          <div id="filter-status" class="text-xs text-gray-500 mb-2 min-h-[1rem]"></div>
           <div class="flex flex-wrap justify-center gap-2">
             <button 
               id="tag-all" 
               class="px-3 py-2 bg-gray-900 text-white text-sm rounded-full font-medium hover:bg-gray-800 transition-colors"
-              onclick="filterCollections('')"
             >
               All Collections
             </button>
@@ -209,7 +209,6 @@ const allTags = [...new Set(allCollections.flatMap(collection => collection.data
               <button 
                 class="px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded-full font-medium hover:bg-gray-200 transition-colors tag-filter"
                 data-tag={tag}
-                onclick={`filterCollections('${tag}')`}
               >
                 {tag.charAt(0).toUpperCase() + tag.slice(1)}
               </button>
@@ -344,40 +343,86 @@ const allTags = [...new Set(allCollections.flatMap(collection => collection.data
 
   <!-- Tag Filtering JavaScript -->
   <script>
-    function filterCollections(selectedTag) {
-      const cards = document.querySelectorAll('.collection-card');
-      const filterButtons = document.querySelectorAll('.tag-filter, #tag-all');
+    // Track selected tags
+    let selectedTags = new Set();
+    
+    function toggleTag(tag) {
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
+      } else {
+        selectedTags.add(tag);
+      }
       
-      // Update button states
+      updateFilterDisplay();
+      filterCollections();
+    }
+    
+    function resetFilters() {
+      selectedTags.clear();
+      updateFilterDisplay();
+      filterCollections();
+    }
+    
+    function updateFilterDisplay() {
+      const filterButtons = document.querySelectorAll('.tag-filter, #tag-all');
+      const statusEl = document.getElementById('filter-status');
+      
+      // Update status text
+      if (selectedTags.size === 0) {
+        statusEl.textContent = 'Showing all collections';
+      } else if (selectedTags.size === 1) {
+        statusEl.textContent = `Filtering by: ${Array.from(selectedTags)[0]}`;
+      } else {
+        statusEl.textContent = `Filtering by: ${Array.from(selectedTags).join(' + ')} (${selectedTags.size} tags)`;
+      }
+      
       filterButtons.forEach(button => {
-        if (selectedTag === '' && button.id === 'tag-all') {
-          button.classList.remove('bg-gray-100', 'text-gray-700');
-          button.classList.add('bg-gray-900', 'text-white');
-        } else if (selectedTag !== '' && button.dataset.tag === selectedTag) {
-          button.classList.remove('bg-gray-100', 'text-gray-700');
-          button.classList.add('bg-gray-900', 'text-white');
+        if (button.id === 'tag-all') {
+          if (selectedTags.size === 0) {
+            button.classList.remove('bg-gray-100', 'text-gray-700');
+            button.classList.add('bg-gray-900', 'text-white');
+          } else {
+            button.classList.remove('bg-gray-900', 'text-white');
+            button.classList.add('bg-gray-100', 'text-gray-700');
+          }
         } else {
-          button.classList.remove('bg-gray-900', 'text-white');
-          button.classList.add('bg-gray-100', 'text-gray-700');
+          const tag = button.dataset.tag;
+          if (selectedTags.has(tag)) {
+            button.classList.remove('bg-gray-100', 'text-gray-700');
+            button.classList.add('bg-gray-900', 'text-white');
+          } else {
+            button.classList.remove('bg-gray-900', 'text-white');
+            button.classList.add('bg-gray-100', 'text-gray-700');
+          }
         }
       });
+    }
+    
+    function filterCollections() {
+      const cards = document.querySelectorAll('.collection-card');
       
-      // Filter cards
       cards.forEach(card => {
-        const cardTags = JSON.parse(card.dataset.tags || '[]');
-        const shouldShow = selectedTag === '' || cardTags.includes(selectedTag);
+        let shouldShow = true;
+        
+        if (selectedTags.size > 0) {
+          const cardTags = JSON.parse(card.dataset.tags || '[]');
+          // AND logic: card must have ALL selected tags
+          shouldShow = Array.from(selectedTags).every(tag => cardTags.includes(tag));
+        }
         
         if (shouldShow) {
-          card.style.display = 'block';
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          
-          // Animate in
-          setTimeout(() => {
-            card.style.transition = 'all 0.3s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
+          if (card.style.display === 'none') {
+            card.style.display = 'block';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            // Animate in
+            requestAnimationFrame(() => {
+              card.style.transition = 'all 0.3s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          }
         } else {
           card.style.transition = 'all 0.3s ease';
           card.style.opacity = '0';
@@ -385,23 +430,46 @@ const allTags = [...new Set(allCollections.flatMap(collection => collection.data
           
           // Hide after animation
           setTimeout(() => {
-            card.style.display = 'none';
+            if (card.style.opacity === '0') {
+              card.style.display = 'none';
+            }
           }, 300);
         }
       });
     }
     
-    // Add click handlers for tag pills in cards
+    // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
+      // Add click handlers for filter buttons
+      const allButton = document.getElementById('tag-all');
+      if (allButton) {
+        allButton.addEventListener('click', resetFilters);
+      }
+      
+      const tagButtons = document.querySelectorAll('.tag-filter');
+      tagButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const tag = this.dataset.tag;
+          toggleTag(tag);
+        });
+      });
+      
+      // Add click handlers for tag pills in cards
       const tagPills = document.querySelectorAll('.collection-card .px-2.py-1.bg-gray-100');
       tagPills.forEach(pill => {
         pill.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          const tagText = this.textContent.toLowerCase();
-          filterCollections(tagText);
+          const tagText = this.textContent.toLowerCase().trim();
+          // Don't filter on "+X more" pills
+          if (!tagText.startsWith('+')) {
+            toggleTag(tagText);
+          }
         });
       });
+      
+      // Initialize display
+      updateFilterDisplay();
     });
   </script>
 </Layout>
