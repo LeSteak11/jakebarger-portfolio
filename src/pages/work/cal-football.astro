@@ -294,32 +294,45 @@ const heroImages = [
         </div>
         
         {category.type === 'nested' ? (
-          <!-- Full nested collection with subprojects -->
-          <div class="space-y-16">
-            <!-- Sticky Mini Navigation for Subprojects -->
-            <div class="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 py-3 -mt-8 mb-8">
-              <div class="flex flex-wrap justify-center gap-3">
-                {category.data.projects[0]?.subprojects?.map((subproject) => (
-                  <a 
-                    href={`#${subproject.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
-                    class="px-4 py-2 bg-yellow-50 text-yellow-700 rounded-full border border-yellow-200 hover:bg-yellow-100 transition-colors text-sm font-medium smooth-scroll"
+          <!-- Tab-based nested collection with subprojects -->
+          <div 
+            x-data="{
+              activeTab: 0
+            }"
+            class="space-y-6"
+          >
+            <!-- Interactive Tab Navigation -->
+            <div class="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 py-3 -mt-4 mb-6">
+              <div class="flex flex-wrap justify-center gap-2">
+                {category.data.projects[0]?.subprojects?.map((subproject, index) => (
+                  <button 
+                    x-on:click={`activeTab = ${index}`}
+                    x-bind:class={`activeTab === ${index} ? 'bg-yellow-600 text-white border-yellow-600' : 'bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-100'`}
+                    class="px-4 py-2 rounded-full border font-medium transition-all duration-300 text-sm"
                   >
                     {subproject.title}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
 
-            {category.data.projects[0]?.subprojects?.map((subproject, subIndex) => {
-              const subprojectId = subproject.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-              return (
+            <!-- Dynamic Content Area -->
+            <div class="relative min-h-[400px]">
+              {category.data.projects[0]?.subprojects?.map((subproject, subIndex) => (
                 <div 
-                  id={subprojectId}
-                  class={`relative rounded-2xl overflow-hidden ${subIndex % 2 === 0 ? 'bg-slate-50' : 'bg-yellow-50/30'} p-6 lg:p-10 shadow-sm`}
+                  x-show={`activeTab === ${subIndex}`}
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="opacity-0 transform translate-y-4"
+                  x-transition:enter-end="opacity-100 transform translate-y-0"
+                  x-transition:leave="transition ease-in duration-200"
+                  x-transition:leave-start="opacity-100"
+                  x-transition:leave-end="opacity-0"
+                  class="bg-slate-50 rounded-lg p-4 lg:p-6 shadow-sm"
+                  style={subIndex !== 0 ? "display: none;" : ""}
                 >
                   <!-- Subproject Header -->
-                  <div class="text-center mb-8">
-                    <div class="inline-flex items-center gap-4 mb-4">
+                  <div class="text-center mb-6">
+                    <div class="inline-flex items-center gap-3 mb-3">
                       <div class="h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent flex-1"></div>
                       <span class="text-xs font-medium text-yellow-600 bg-white px-3 py-1 rounded-full border border-yellow-200">
                         {subIndex + 1} of {category.data.projects[0]?.subprojects?.length || 0}
@@ -327,76 +340,57 @@ const heroImages = [
                       <div class="h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent flex-1"></div>
                     </div>
                     
-                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
+                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
                       {subproject.title}
                     </h3>
                     
                     <!-- Accent line under title -->
-                    <div class="w-20 h-1 bg-gradient-to-r from-yellow-500 to-yellow-600 mx-auto mb-4 rounded-full"></div>
+                    <div class="w-20 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-600 mx-auto mb-4 rounded-full"></div>
                     
                     {subproject.description && (
-                      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+                      <p class="text-sm text-gray-600 max-w-2xl mx-auto mb-4 leading-relaxed">
                         {subproject.description}
                       </p>
                     )}
                     
-                    <div class="flex items-center justify-center gap-6 text-sm text-gray-500">
-                      <span class="flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center justify-center gap-4 text-xs text-gray-500 mb-6">
+                      <span class="flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
                         {subproject.images?.length || 0} image{(subproject.images?.length || 0) !== 1 ? 's' : ''}
                       </span>
-                      
-                      <!-- Quick back to top link -->
-                      <span>•</span>
-                      <a 
-                        href="#collections" 
-                        class="flex items-center gap-1 text-yellow-600 hover:text-yellow-700 transition-colors smooth-scroll"
-                      >
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-                        </svg>
-                        Back to Top
-                      </a>
                     </div>
                   </div>
 
                   <!-- Enhanced Gallery -->
                   <div class="gallery-container">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-3">
                       {(subproject.images || []).map((image, imageIndex) => (
-                        <div class="group relative aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="group relative aspect-square bg-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
                           <img 
                             src={image.src} 
                             alt={image.alt}
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             loading="lazy"
                           />
                           <!-- Hover overlay -->
                           <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                            <div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              View Image
+                            <div class="bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              View
                             </div>
                           </div>
                           <!-- Image number indicator -->
-                          <div class="absolute top-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div class="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             {imageIndex + 1}
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  {subIndex < (category.data.projects[0]?.subprojects?.length || 0) - 1 && (
-                    <!-- Section separator -->
-                    <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
-                      <div class="w-2 h-24 bg-gradient-to-b from-yellow-300 to-transparent rounded-full"></div>
-                    </div>
-                  )}
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         ) : (
           <!-- Full flat collection -->
