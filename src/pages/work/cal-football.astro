@@ -60,8 +60,8 @@ const heroImages = [
 <Layout title="Cal Football - Jake Barger Portfolio">
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-yellow-900 via-yellow-800 to-yellow-700 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
           <div class="mb-4">
             <span class="inline-block px-3 py-1 bg-yellow-600 text-yellow-100 rounded-full text-sm font-semibold">
@@ -87,9 +87,36 @@ const heroImages = [
           </div>
         </div>
         
-        <!-- Hero Gallery -->
+        <!-- Hero Gallery - Enhanced Layout -->
         <div class="lg:ml-8">
-          <Gallery images={heroImages} columns={1} lightbox={true} showCaptions={false} />
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Large primary image -->
+            <div class="col-span-2">
+              <img 
+                src={heroImages[0].src} 
+                alt={heroImages[0].alt}
+                class="w-full h-64 lg:h-80 object-cover rounded-xl shadow-lg"
+                loading="eager"
+              />
+            </div>
+            <!-- Two smaller images -->
+            <div>
+              <img 
+                src={heroImages[1].src} 
+                alt={heroImages[1].alt}
+                class="w-full h-32 lg:h-40 object-cover rounded-lg shadow-md"
+                loading="eager"
+              />
+            </div>
+            <div>
+              <img 
+                src={heroImages[2].src} 
+                alt={heroImages[2].alt}
+                class="w-full h-32 lg:h-40 object-cover rounded-lg shadow-md"
+                loading="eager"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -97,7 +124,7 @@ const heroImages = [
 
   <!-- Stats Section -->
   <section class="py-12 bg-white border-b">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div>
           <div class="text-3xl font-bold text-yellow-600 mb-2">12+</div>
@@ -163,15 +190,15 @@ const heroImages = [
 
   <!-- Collections Section -->
   <section id="collections" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Collections</h2>
-        <p class="text-lg text-gray-600 mb-8">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Collections</h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
           Explore different types of design work created for Cal Football.
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {categories.map((category) => {
           // Get thumbnail image
           const thumbnail = category.type === 'nested' 
@@ -179,34 +206,36 @@ const heroImages = [
             : category.data.projects[0]?.images?.[0];
             
           return (
-            <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
               <!-- Thumbnail -->
-              <div class="relative h-48 bg-gray-200 overflow-hidden">
+              <div class="relative h-64 lg:h-72 bg-gray-200 overflow-hidden">
                 {thumbnail ? (
                   <img 
                     src={thumbnail.src} 
                     alt={thumbnail.alt}
-                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
                 ) : (
                   <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
-                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
                     </svg>
                   </div>
                 )}
+                <!-- Overlay for better text contrast -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               <!-- Content -->
-              <div class="p-6">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">{category.name}</h3>
-                <p class="text-gray-600 mb-4 text-sm leading-relaxed">{category.data.description}</p>
+              <div class="p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-yellow-600 transition-colors">{category.name}</h3>
+                <p class="text-gray-600 mb-6 text-base leading-relaxed">{category.data.description}</p>
                 
                 <!-- Meta Info -->
-                <div class="flex justify-between items-center text-sm text-gray-500 mb-6">
-                  <span>2022</span>
-                  <span>
+                <div class="flex justify-between items-center text-sm text-gray-500 mb-8">
+                  <span class="font-medium">2022</span>
+                  <span class="bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full font-medium">
                     {category.type === 'nested' 
                       ? `${category.data.projects[0]?.subprojects?.length || 0} subproject${(category.data.projects[0]?.subprojects?.length || 0) !== 1 ? 's' : ''}`
                       : `${category.data.projects[0]?.images?.length || 0} image${(category.data.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}`
@@ -217,10 +246,10 @@ const heroImages = [
                 <!-- Action Button -->
                 <a 
                   href={`#${category.id}`} 
-                  class="inline-flex items-center w-full justify-center px-4 py-2 bg-yellow-600 text-white font-medium rounded-lg hover:bg-yellow-700 transition-colors smooth-scroll"
+                  class="inline-flex items-center w-full justify-center px-6 py-4 bg-yellow-600 text-white font-semibold rounded-xl hover:bg-yellow-700 transition-all duration-300 group-hover:bg-yellow-700 group-hover:shadow-lg smooth-scroll"
                 >
                   View Collection
-                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                   </svg>
                 </a>
@@ -235,7 +264,7 @@ const heroImages = [
   <!-- Individual Collection Sections -->
   {categories.map((category, index) => (
     <section id={category.id} class={`py-20 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} border-t`}>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
         <!-- Collection Header -->
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-900 mb-6">{category.name}</h2>
@@ -266,41 +295,141 @@ const heroImages = [
         
         {category.type === 'nested' ? (
           <!-- Full nested collection with subprojects -->
-          <div class="space-y-20">
-            {category.data.projects[0]?.subprojects?.map((subproject, subIndex) => (
-              <div class="space-y-8">
-                <div class="text-center">
-                  <h3 class="text-2xl font-semibold text-gray-900 mb-4">{subproject.title}</h3>
-                  <p class="text-gray-600">
-                    {subproject.images?.length || 0} image{(subproject.images?.length || 0) !== 1 ? 's' : ''}
-                  </p>
-                </div>
-                <Gallery 
-                  images={subproject.images || []} 
-                  columns={3} 
-                  lightbox={true} 
-                  showCaptions={true}
-                />
-                {subIndex < (category.data.projects[0]?.subprojects?.length || 0) - 1 && (
-                  <div class="border-b border-gray-200 pt-8"></div>
-                )}
+          <div class="space-y-16">
+            <!-- Sticky Mini Navigation for Subprojects -->
+            <div class="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 py-3 -mt-8 mb-8">
+              <div class="flex flex-wrap justify-center gap-3">
+                {category.data.projects[0]?.subprojects?.map((subproject) => (
+                  <a 
+                    href={`#${subproject.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
+                    class="px-4 py-2 bg-yellow-50 text-yellow-700 rounded-full border border-yellow-200 hover:bg-yellow-100 transition-colors text-sm font-medium smooth-scroll"
+                  >
+                    {subproject.title}
+                  </a>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {category.data.projects[0]?.subprojects?.map((subproject, subIndex) => {
+              const subprojectId = subproject.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+              return (
+                <div 
+                  id={subprojectId}
+                  class={`relative rounded-2xl overflow-hidden ${subIndex % 2 === 0 ? 'bg-slate-50' : 'bg-yellow-50/30'} p-6 lg:p-10 shadow-sm`}
+                >
+                  <!-- Subproject Header -->
+                  <div class="text-center mb-8">
+                    <div class="inline-flex items-center gap-4 mb-4">
+                      <div class="h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent flex-1"></div>
+                      <span class="text-xs font-medium text-yellow-600 bg-white px-3 py-1 rounded-full border border-yellow-200">
+                        {subIndex + 1} of {category.data.projects[0]?.subprojects?.length || 0}
+                      </span>
+                      <div class="h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent flex-1"></div>
+                    </div>
+                    
+                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
+                      {subproject.title}
+                    </h3>
+                    
+                    <!-- Accent line under title -->
+                    <div class="w-20 h-1 bg-gradient-to-r from-yellow-500 to-yellow-600 mx-auto mb-4 rounded-full"></div>
+                    
+                    {subproject.description && (
+                      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+                        {subproject.description}
+                      </p>
+                    )}
+                    
+                    <div class="flex items-center justify-center gap-6 text-sm text-gray-500">
+                      <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        {subproject.images?.length || 0} image{(subproject.images?.length || 0) !== 1 ? 's' : ''}
+                      </span>
+                      
+                      <!-- Quick back to top link -->
+                      <span>•</span>
+                      <a 
+                        href="#collections" 
+                        class="flex items-center gap-1 text-yellow-600 hover:text-yellow-700 transition-colors smooth-scroll"
+                      >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                        </svg>
+                        Back to Top
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Enhanced Gallery -->
+                  <div class="gallery-container">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                      {(subproject.images || []).map((image, imageIndex) => (
+                        <div class="group relative aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer">
+                          <img 
+                            src={image.src} 
+                            alt={image.alt}
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                          <!-- Hover overlay -->
+                          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                            <div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              View Image
+                            </div>
+                          </div>
+                          <!-- Image number indicator -->
+                          <div class="absolute top-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            {imageIndex + 1}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {subIndex < (category.data.projects[0]?.subprojects?.length || 0) - 1 && (
+                    <!-- Section separator -->
+                    <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                      <div class="w-2 h-24 bg-gradient-to-b from-yellow-300 to-transparent rounded-full"></div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         ) : (
           <!-- Full flat collection -->
-          <div>
-            <Gallery 
-              images={category.data.projects[0]?.images || []} 
-              columns={3} 
-              lightbox={true} 
-              showCaptions={true}
-            />
+          <div class="bg-slate-50 rounded-2xl p-8 lg:p-12 shadow-sm">
+            <div class="gallery-container">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                {(category.data.projects[0]?.images || []).map((image, imageIndex) => (
+                  <div class="group relative aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt}
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <!-- Hover overlay -->
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                      <div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        View Image
+                      </div>
+                    </div>
+                    <!-- Image number indicator -->
+                    <div class="absolute top-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {imageIndex + 1}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
         
         <!-- Back to Collections -->
-        <div class="text-center mt-16 pt-8 border-t border-gray-200">
+        <div class="text-center mt-12 pt-6 border-t border-gray-200">
           <a 
             href="#collections" 
             class="inline-flex items-center px-6 py-3 text-yellow-600 hover:text-yellow-700 font-medium transition-colors smooth-scroll"
