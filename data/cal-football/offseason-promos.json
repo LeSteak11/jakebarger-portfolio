@@ -1,0 +1,43 @@
+{
+  "category": "Off-Season & Promotions",
+  "description": "Off-season content including NFL Draft coverage, spring practice, and promotional materials",
+  "projects": [
+    {
+      "id": "cal-offseason-001",
+      "title": "NFL Draft Coverage",
+      "description": "Graphics celebrating Cal players drafted into the NFL",
+      "tags": ["nfl-draft", "pro-bears", "celebration"],
+      "images": [
+        {
+          "src": "/images/cal-football/offseason/nfl-draft-graphic.jpg",
+          "alt": "Cal Football NFL Draft Graphic",
+          "caption": "Cal Bears Selected in NFL Draft"
+        },
+        {
+          "src": "/images/cal-football/offseason/draft-day-coverage.jpg",
+          "alt": "Cal Football Draft Day Coverage",
+          "caption": "Live Draft Day Coverage Graphics"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": true
+    },
+    {
+      "id": "cal-offseason-002",
+      "title": "Spring Practice Content",
+      "description": "Spring ball highlights and practice updates",
+      "tags": ["spring-practice", "training", "preparation"],
+      "images": [
+        {
+          "src": "/images/cal-football/offseason/spring-practice.jpg",
+          "alt": "Cal Football Spring Practice",
+          "caption": "Spring Practice Highlights"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": false
+    }
+  ]
+}

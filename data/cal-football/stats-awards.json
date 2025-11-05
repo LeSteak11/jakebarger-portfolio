@@ -1,0 +1,43 @@
+{
+  "category": "Stats, Awards & Achievements",
+  "description": "Statistical graphics, player awards, and team achievement celebrations for Cal Football",
+  "projects": [
+    {
+      "id": "cal-stats-001",
+      "title": "Player Awards Graphics",
+      "description": "Recognition graphics for individual player achievements and awards",
+      "tags": ["awards", "players", "recognition"],
+      "images": [
+        {
+          "src": "/images/cal-football/awards/pac12-player-week.jpg",
+          "alt": "Cal Football Pac-12 Player of the Week",
+          "caption": "Pac-12 Player of the Week Recognition"
+        },
+        {
+          "src": "/images/cal-football/awards/all-pac12-team.jpg",
+          "alt": "Cal Football All-Pac-12 Team",
+          "caption": "All-Pac-12 Team Selection Graphic"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": true
+    },
+    {
+      "id": "cal-stats-002",
+      "title": "Season Statistics",
+      "description": "Comprehensive season and game statistics visualizations",
+      "tags": ["statistics", "season-recap", "data-viz"],
+      "images": [
+        {
+          "src": "/images/cal-football/stats/season-stats.jpg",
+          "alt": "Cal Football Season Statistics",
+          "caption": "2023 Season Statistical Summary"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": false
+    }
+  ]
+}

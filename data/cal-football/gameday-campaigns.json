@@ -1,0 +1,43 @@
+{
+  "category": "Gameday Campaigns",
+  "description": "Game day graphics, victory celebrations, and matchday promotional content",
+  "projects": [
+    {
+      "id": "cal-gameday-001",
+      "title": "Game Posters & Previews",
+      "description": "Weekly game posters and matchup preview graphics",
+      "tags": ["game-posters", "previews", "matchups"],
+      "images": [
+        {
+          "src": "/images/cal-football/gameday/stanford-poster.jpg",
+          "alt": "Cal vs Stanford Game Poster",
+          "caption": "Big Game vs Stanford Poster"
+        },
+        {
+          "src": "/images/cal-football/gameday/usc-preview.jpg",
+          "alt": "Cal vs USC Game Preview",
+          "caption": "USC Matchup Preview Graphic"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": true
+    },
+    {
+      "id": "cal-gameday-002",
+      "title": "Victory Graphics",
+      "description": "Post-game victory celebrations and highlight graphics",
+      "tags": ["victory", "celebration", "highlights"],
+      "images": [
+        {
+          "src": "/images/cal-football/gameday/victory-graphic.jpg",
+          "alt": "Cal Football Victory Graphic",
+          "caption": "Victory Celebration Graphic"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": true
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "category": "Stat & Record Graphics",
+  "description": "Statistical graphics, record-breaking achievements, and performance visualizations",
+  "projects": [
+    {
+      "id": "stats-001",
+      "title": "Season Statistics Graphics",
+      "description": "End-of-season statistical summaries and player performance graphics",
+      "tags": ["statistics", "season-recap", "performance"],
+      "images": [
+        {
+          "src": "/images/sjsu/stats/season-stats-mbb.jpg",
+          "alt": "SJSU Men's Basketball Season Statistics",
+          "caption": "2023 Men's Basketball Season Statistics"
+        },
+        {
+          "src": "/images/sjsu/stats/season-stats-vb.jpg",
+          "alt": "SJSU Volleyball Season Statistics",
+          "caption": "2023 Volleyball Season Statistics"
+        }
+      ],
+      "year": 2023,
+      "sports": ["basketball", "volleyball"],
+      "featured": false
+    },
+    {
+      "id": "stats-002",
+      "title": "Record-Breaking Achievements",
+      "description": "Graphics celebrating school and conference records",
+      "tags": ["records", "achievements", "milestones"],
+      "images": [
+        {
+          "src": "/images/sjsu/stats/school-record.jpg",
+          "alt": "SJSU School Record Graphic",
+          "caption": "New School Record Achievement"
+        }
+      ],
+      "year": 2023,
+      "sports": ["track-field", "swimming"],
+      "featured": true
+    }
+  ]
+}

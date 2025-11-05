@@ -1,0 +1,43 @@
+{
+  "category": "Recruiting & Commitment Content",
+  "description": "Recruiting graphics, official visit announcements, and commitment celebrations",
+  "projects": [
+    {
+      "id": "cal-recruiting-001",
+      "title": "Official Visit Graphics",
+      "description": "Welcome graphics for official visits and recruiting events",
+      "tags": ["recruiting", "official-visits", "prospects"],
+      "images": [
+        {
+          "src": "/images/cal-football/recruiting/junior-day.jpg",
+          "alt": "Cal Football Junior Day Graphic",
+          "caption": "Junior Day Official Visit Welcome"
+        },
+        {
+          "src": "/images/cal-football/recruiting/visit-weekend.jpg",
+          "alt": "Cal Football Visit Weekend",
+          "caption": "Official Visit Weekend Graphics"
+        }
+      ],
+      "year": 2023,
+      "sports": ["football"],
+      "featured": true
+    },
+    {
+      "id": "cal-recruiting-002",
+      "title": "Commitment Celebrations",
+      "description": "National Signing Day and commitment announcement graphics",
+      "tags": ["commitments", "nsd", "signings"],
+      "images": [
+        {
+          "src": "/images/cal-football/recruiting/nsd-2022.jpg",
+          "alt": "Cal Football National Signing Day 2022",
+          "caption": "National Signing Day 2022 Class"
+        }
+      ],
+      "year": 2022,
+      "sports": ["football"],
+      "featured": true
+    }
+  ]
+}

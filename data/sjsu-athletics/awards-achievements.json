@@ -1,0 +1,43 @@
+{
+  "category": "Awards & Achievements",
+  "description": "Recognition graphics for student-athlete achievements, team awards, and milestone celebrations",
+  "projects": [
+    {
+      "id": "awards-001",
+      "title": "Student-Athlete of the Week",
+      "description": "Weekly recognition graphics for outstanding student-athlete performances",
+      "tags": ["awards", "student-athletes", "weekly-recognition"],
+      "images": [
+        {
+          "src": "/images/sjsu/awards/saotw-week1.jpg",
+          "alt": "SJSU Student-Athlete of the Week Graphic",
+          "caption": "Week 1 Student-Athlete of the Week"
+        },
+        {
+          "src": "/images/sjsu/awards/saotw-week5.jpg",
+          "alt": "SJSU Student-Athlete of the Week Graphic",
+          "caption": "Week 5 Student-Athlete of the Week"
+        }
+      ],
+      "year": 2023,
+      "sports": ["multi-sport"],
+      "featured": true
+    },
+    {
+      "id": "awards-002",
+      "title": "Team Achievement Graphics",
+      "description": "Championship celebrations and team milestone graphics",
+      "tags": ["championships", "milestones", "team-achievements"],
+      "images": [
+        {
+          "src": "/images/sjsu/awards/mw-champions.jpg",
+          "alt": "SJSU Mountain West Champions Graphic",
+          "caption": "Mountain West Conference Champions Celebration"
+        }
+      ],
+      "year": 2023,
+      "sports": ["volleyball", "gymnastics"],
+      "featured": true
+    }
+  ]
+}

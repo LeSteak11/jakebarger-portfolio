@@ -1,0 +1,70 @@
+{
+  "experiences": [
+    {
+      "id": "sjsu-athletics",
+      "organization": "SJSU Athletics",
+      "title": "Graphic Designer & Photographer",
+      "duration": "2023 - Present",
+      "location": "San Jose, CA",
+      "description": "Lead graphic designer creating visual content for all SJSU Athletics teams including schedules, gameday graphics, social media content, and photography coverage.",
+      "responsibilities": [
+        "Design weekly gameday graphics and promotional materials for 17+ sports teams",
+        "Create schedule posters and tournament graphics for fall, spring, and summer seasons",
+        "Photograph live sporting events and provide action photography for marketing use",
+        "Develop social media content strategy and templates for Instagram and Twitter",
+        "Collaborate with coaching staff and marketing team on brand consistency",
+        "Manage rapid turnaround design requests for time-sensitive content"
+      ],
+      "skills": ["Adobe Creative Suite", "Sports Photography", "Social Media Design", "Brand Management", "Time Management"],
+      "achievements": [
+        "Increased social media engagement by 40% through improved graphic design",
+        "Developed standardized design templates used across all sports programs",
+        "Covered 50+ live sporting events with professional photography"
+      ],
+      "featured": true
+    },
+    {
+      "id": "cal-football",
+      "organization": "Cal Football",
+      "title": "Graphic Designer",
+      "duration": "2022 - 2023",
+      "location": "Berkeley, CA",
+      "description": "Created comprehensive visual content for Cal Football including recruiting materials, gameday campaigns, and statistical graphics.",
+      "responsibilities": [
+        "Design weekly game posters and matchup preview graphics",
+        "Create recruiting materials for official visits and commitment announcements",
+        "Develop statistical graphics and season recap visualizations",
+        "Produce NFL Draft celebration graphics for former Cal players",
+        "Design off-season promotional content and spring practice materials"
+      ],
+      "skills": ["Sports Graphic Design", "Recruiting Materials", "Statistical Visualization", "Campaign Design"],
+      "achievements": [
+        "Designed graphics for 12 regular season games plus bowl game",
+        "Created comprehensive recruiting package used for top-tier prospects",
+        "Developed signature visual style adopted across Cal Football social media"
+      ],
+      "featured": true
+    },
+    {
+      "id": "sjsu-football-internship",
+      "organization": "SJSU Football",
+      "title": "Design Intern",
+      "duration": "2020 - 2021",
+      "location": "San Jose, CA",
+      "description": "Student internship focused on learning sports design fundamentals and supporting the football program's visual content needs.",
+      "responsibilities": [
+        "Assisted with gameday content creation and social media graphics",
+        "Supported award recognition graphics and milestone celebrations",
+        "Learned industry-standard design software and sports marketing principles",
+        "Collaborated with senior designers on major campaign projects"
+      ],
+      "skills": ["Adobe Photoshop", "Adobe Illustrator", "Sports Marketing", "Design Fundamentals"],
+      "achievements": [
+        "Completed comprehensive sports design training program",
+        "Contributed to 6+ gameday campaigns during internship period",
+        "Received commendation for creativity and attention to detail"
+      ],
+      "featured": false
+    }
+  ]
+}
