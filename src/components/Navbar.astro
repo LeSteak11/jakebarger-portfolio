@@ -1,0 +1,118 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-white shadow-sm border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo/Brand -->
+      <div class="flex-shrink-0">
+        <a href="/" class="text-2xl font-bold text-gray-900">
+          Jake Barger
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          <a 
+            href="/" 
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentPath === '/' 
+                ? 'bg-primary-100 text-primary-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            Home
+          </a>
+          <a 
+            href="/work" 
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentPath.startsWith('/work') 
+                ? 'bg-primary-100 text-primary-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            Work
+          </a>
+          <a 
+            href="/experience" 
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentPath === '/experience' 
+                ? 'bg-primary-100 text-primary-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            Experience
+          </a>
+          <a 
+            href="/about" 
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentPath === '/about' 
+                ? 'bg-primary-100 text-primary-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            About
+          </a>
+          <a 
+            href="/contact" 
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentPath === '/contact' 
+                ? 'bg-primary-100 text-primary-700' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button 
+          type="button" 
+          class="mobile-menu-button bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+          aria-controls="mobile-menu" 
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Hamburger icon -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu hidden md:hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
+      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Home</a>
+      <a href="/work" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Work</a>
+      <a href="/experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Experience</a>
+      <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">About</a>
+      <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.mobile-menu-button');
+    const menu = document.querySelector('.mobile-menu');
+    
+    button?.addEventListener('click', function() {
+      const isHidden = menu?.classList.contains('hidden');
+      if (isHidden) {
+        menu?.classList.remove('hidden');
+        button.setAttribute('aria-expanded', 'true');
+      } else {
+        menu?.classList.add('hidden');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>

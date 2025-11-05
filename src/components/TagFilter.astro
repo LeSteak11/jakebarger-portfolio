@@ -1,0 +1,232 @@
+---
+export interface Props {
+  tags: string[];
+  selectedTags?: string[];
+  placeholder?: string;
+  allowMultiple?: boolean;
+  showClearAll?: boolean;
+}
+
+const { 
+  tags, 
+  selectedTags = [], 
+  placeholder = "Filter by tags...",
+  allowMultiple = true,
+  showClearAll = true
+} = Astro.props;
+
+// Format tag display names
+const formatTag = (tag: string) => {
+  return tag.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+};
+---
+
+<div class="tag-filter-component">
+  <div class="flex flex-wrap items-center gap-3">
+    
+    <!-- Filter Dropdown -->
+    <div class="relative">
+      <select 
+        class="tag-select px-4 py-2 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white min-w-48"
+        {allowMultiple ? 'multiple' : ''}
+      >
+        <option value="" disabled selected>{placeholder}</option>
+        {tags.map(tag => (
+          <option 
+            value={tag}
+            selected={selectedTags.includes(tag)}
+          >
+            {formatTag(tag)}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Active Tags Display -->
+    <div class="active-tags flex flex-wrap gap-2" style="display: none;">
+      <!-- Tags will be populated by JavaScript -->
+    </div>
+
+    <!-- Clear All Button -->
+    {showClearAll && (
+      <button 
+        class="clear-all-btn hidden px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+        type="button"
+      >
+        Clear All
+      </button>
+    )}
+  </div>
+
+  <!-- Popular Tags (Quick Filters) -->
+  {tags.length > 0 && (
+    <div class="mt-4">
+      <div class="text-sm text-gray-600 mb-2">Popular tags:</div>
+      <div class="flex flex-wrap gap-2">
+        {tags.slice(0, 8).map(tag => (
+          <button 
+            class="quick-tag-btn px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors"
+            data-tag={tag}
+            type="button"
+          >
+            {formatTag(tag)}
+          </button>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
+<script define:vars={{ allowMultiple, tags }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tagSelect = document.querySelector('.tag-select');
+    const activeTags = document.querySelector('.active-tags');
+    const clearAllBtn = document.querySelector('.clear-all-btn');
+    const quickTagBtns = document.querySelectorAll('.quick-tag-btn');
+    
+    let selectedTagsArray = [];
+
+    function formatTag(tag) {
+      return tag.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    function updateActiveTagsDisplay() {
+      if (!activeTags) return;
+      
+      if (selectedTagsArray.length === 0) {
+        activeTags.style.display = 'none';
+        clearAllBtn?.classList.add('hidden');
+        return;
+      }
+
+      activeTags.style.display = 'flex';
+      clearAllBtn?.classList.remove('hidden');
+      
+      activeTags.innerHTML = selectedTagsArray.map(tag => `
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary-100 text-primary-800">
+          ${formatTag(tag)}
+          <button type="button" class="ml-2 text-primary-600 hover:text-primary-800" data-remove-tag="${tag}">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </span>
+      `).join('');
+
+      // Add event listeners to remove buttons
+      activeTags.querySelectorAll('[data-remove-tag]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const tagToRemove = this.getAttribute('data-remove-tag');
+          removeTag(tagToRemove);
+        });
+      });
+    }
+
+    function addTag(tag) {
+      if (!tag) return;
+      
+      if (allowMultiple) {
+        if (!selectedTagsArray.includes(tag)) {
+          selectedTagsArray.push(tag);
+        }
+      } else {
+        selectedTagsArray = [tag];
+      }
+      
+      updateActiveTagsDisplay();
+      dispatchFilterEvent();
+    }
+
+    function removeTag(tag) {
+      selectedTagsArray = selectedTagsArray.filter(t => t !== tag);
+      updateActiveTagsDisplay();
+      dispatchFilterEvent();
+    }
+
+    function clearAllTags() {
+      selectedTagsArray = [];
+      updateActiveTagsDisplay();
+      if (tagSelect) {
+        tagSelect.value = '';
+      }
+      dispatchFilterEvent();
+    }
+
+    function dispatchFilterEvent() {
+      // Dispatch custom event that other components can listen to
+      const event = new CustomEvent('tagsChanged', {
+        detail: { selectedTags: selectedTagsArray },
+        bubbles: true
+      });
+      document.dispatchEvent(event);
+    }
+
+    // Handle select change
+    if (tagSelect) {
+      tagSelect.addEventListener('change', function() {
+        if (allowMultiple) {
+          const selectedOptions = Array.from(this.selectedOptions).map(option => option.value);
+          selectedTagsArray = selectedOptions.filter(tag => tag !== '');
+        } else {
+          const selectedValue = this.value;
+          if (selectedValue) {
+            addTag(selectedValue);
+            this.value = ''; // Reset select
+          }
+        }
+        updateActiveTagsDisplay();
+        dispatchFilterEvent();
+      });
+    }
+
+    // Handle quick tag buttons
+    quickTagBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const tag = this.getAttribute('data-tag');
+        
+        if (selectedTagsArray.includes(tag)) {
+          removeTag(tag);
+          this.classList.remove('bg-primary-100', 'text-primary-700');
+          this.classList.add('bg-gray-100', 'text-gray-700');
+        } else {
+          addTag(tag);
+          this.classList.remove('bg-gray-100', 'text-gray-700');
+          this.classList.add('bg-primary-100', 'text-primary-700');
+        }
+      });
+    });
+
+    // Handle clear all button
+    clearAllBtn?.addEventListener('click', function() {
+      clearAllTags();
+      
+      // Reset quick tag button styles
+      quickTagBtns.forEach(btn => {
+        btn.classList.remove('bg-primary-100', 'text-primary-700');
+        btn.classList.add('bg-gray-100', 'text-gray-700');
+      });
+    });
+
+    // Initialize display
+    updateActiveTagsDisplay();
+  });
+</script>
+
+<style>
+  .tag-select:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .quick-tag-btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  .active-tags .inline-flex {
+    animation: fadeIn 0.2s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
