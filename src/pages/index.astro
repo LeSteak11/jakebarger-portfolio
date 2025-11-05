@@ -1,56 +1,62 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectGrid from '../components/ProjectGrid.astro';
 
-// Import sample data for homepage preview
-const sampleProjects = [
+// Import actual portfolio data
+import sjsuPerformance from '../../data/sjsu-athletics/performance-highlights.json';
+import calGameWeek from '../../data/cal-football/game-week-content.json';
+
+// Create featured collections from actual portfolio data
+const featuredCollections = [
   {
-    id: "featured-1",
-    title: "SJSU Men's Basketball Gameday Graphics",
-    description: "Complete gameday graphic package for home and away games including social media content and promotional materials.",
-    tags: ["gameday", "basketball", "social-media"],
+    id: "sjsu-performance-highlights",
+    title: "SJSU Performance Highlights",
+    description: "Awards, achievements, and statistical graphics celebrating outstanding student-athlete performances across 17+ sports teams at San José State University.",
+    tags: ["awards", "milestones", "stat graphics", "branding"],
     images: [
       {
-        src: "/images/sjsu/gameday/mbb-homecoming.jpg",
-        alt: "SJSU Men's Basketball Homecoming Game Graphic",
-        caption: "Homecoming Game vs. Fresno State"
+        src: "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Slusser-AllMW_Fall2023.jpg",
+        alt: "SJSU Volleyball All Mountain West Award",
+        caption: "All-Conference Recognition Graphics"
+      },
+      {
+        src: "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MBB_Omari1k_2023.jpg",
+        alt: "SJSU Men's Basketball 1000 Points Milestone",
+        caption: "Career Milestone Graphics"
+      },
+      {
+        src: "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__WACAward1_Fall2023.jpg",
+        alt: "SJSU Men's Soccer WAC Award",
+        caption: "Conference Award Recognition"
       }
     ],
     year: 2023,
-    sports: ["basketball"],
-    featured: true
+    sports: ["multiple"],
+    featured: true,
+    workPage: "sjsu-athletics",
+    anchor: "performance"
   },
   {
-    id: "featured-2",
-    title: "Cal Football Game Posters",
-    description: "Weekly game posters and matchup preview graphics for the Cal Football season.",
-    tags: ["game-posters", "previews", "matchups"],
+    id: "cal-game-week-content", 
+    title: "Cal Football Game Week Content",
+    description: "Comprehensive gameweek coverage including matchup posters, gameday content, and victory graphics for the Cal Golden Bears football program.",
+    tags: ["graphic design", "event coverage", "branding"],
     images: [
       {
-        src: "/images/cal-football/gameday/stanford-poster.jpg",
-        alt: "Cal vs Stanford Game Poster",
-        caption: "Big Game vs Stanford Poster"
+        src: "/images/cal-football/game-week-content/matchup-posters/CAL_FB_MatchupPoster_Arizona_2022.jpg",
+        alt: "Cal vs Arizona Matchup Poster",
+        caption: "Weekly Matchup Posters"
+      },
+      {
+        src: "/images/cal-football/game-week-content/victory-graphics/CAL_Football_BigGame_VictoryGraphic_2022.jpg",
+        alt: "Cal Football Big Game Victory",
+        caption: "Post-Game Victory Graphics"
       }
     ],
-    year: 2023,
+    year: 2022,
     sports: ["football"],
-    featured: true
-  },
-  {
-    id: "featured-3",
-    title: "SJSU Athletics Awards Graphics",
-    description: "Weekly recognition graphics for outstanding student-athlete performances and achievements.",
-    tags: ["awards", "student-athletes", "weekly-recognition"],
-    images: [
-      {
-        src: "/images/sjsu/awards/saotw-week1.jpg",
-        alt: "SJSU Student-Athlete of the Week Graphic",
-        caption: "Week 1 Student-Athlete of the Week"
-      }
-    ],
-    year: 2023,
-    sports: ["multi-sport"],
-    featured: true
+    featured: true,
+    workPage: "cal-football", 
+    anchor: "gameweek"
   }
 ];
 ---
@@ -94,17 +100,118 @@ const sampleProjects = [
 	<!-- Featured Work Section -->
 	<section class="py-20 bg-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center mb-16">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Work</h2>
-				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-					A selection of recent projects showcasing sports design and photography work 
-					across multiple athletic programs.
-				</p>
-			</div>
-			
-			<ProjectGrid projects={sampleProjects} />
-			
-			<div class="text-center mt-12">
+		<div class="text-center mb-16">
+			<h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Work</h2>
+			<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+				A selection of recent projects showcasing sports design and photography work 
+				across multiple athletic programs.
+			</p>
+		</div>
+		
+		<!-- Featured Collections Grid -->
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+			{featuredCollections.map((collection) => {
+				// Get thumbnail image
+				const thumbnail = collection.workPage === 'sjsu-athletics' 
+					? sjsuPerformance.projects[0]?.images?.[0]
+					: calGameWeek.projects[0]?.subprojects?.[0]?.images?.[0];
+					
+				return (
+					<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+						<!-- Thumbnail -->
+						<div class="relative h-48 bg-gray-200 overflow-hidden">
+							{thumbnail ? (
+								<img 
+									src={thumbnail.src} 
+									alt={thumbnail.alt}
+									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+									loading="lazy"
+								/>
+							) : (
+								<div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
+									<svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
+										<path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+									</svg>
+								</div>
+							)}
+							
+							<!-- Program Badge -->
+							<div class="absolute top-3 left-3">
+								<span class={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
+									collection.workPage === 'sjsu-athletics' 
+										? 'bg-blue-600 text-blue-100' 
+										: 'bg-yellow-600 text-yellow-100'
+								}`}>
+									{collection.workPage === 'sjsu-athletics' ? 'SJSU Athletics' : 'Cal Football'}
+								</span>
+							</div>
+						</div>
+						
+						<!-- Content -->
+						<div class="p-5">
+							<h3 class={`text-lg font-bold mb-2 transition-colors ${
+								collection.workPage === 'sjsu-athletics' 
+									? 'text-gray-900 group-hover:text-blue-600' 
+									: 'text-gray-900 group-hover:text-yellow-600'
+							}`}>
+								{collection.title.replace('SJSU ', '').replace('Cal Football ', '')}
+							</h3>
+							
+							<!-- Tags -->
+							<div class="flex flex-wrap gap-1 mb-3">
+								{collection.tags.slice(0, 4).map((tag) => (
+									<span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full hover:bg-gray-200 transition-colors cursor-pointer font-medium">
+										{tag.charAt(0).toUpperCase() + tag.slice(1)}
+									</span>
+								))}
+								{collection.tags.length > 4 && (
+									<span class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full font-medium">
+										+{collection.tags.length - 4} more
+									</span>
+								)}
+							</div>
+							
+							<p class="text-gray-600 mb-4 text-sm leading-relaxed">
+								{collection.workPage === 'sjsu-athletics' 
+									? sjsuPerformance.description
+									: calGameWeek.description
+								}
+							</p>
+							
+							<!-- Meta Info -->
+							<div class="flex justify-between items-center text-xs text-gray-500 mb-4">
+								<span class="font-medium">{collection.year}</span>
+								<span class={`px-2 py-1 rounded-full font-medium ${
+									collection.workPage === 'sjsu-athletics' 
+										? 'bg-blue-50 text-blue-600' 
+										: 'bg-yellow-50 text-yellow-600'
+								}`}>
+									{collection.workPage === 'sjsu-athletics' 
+										? `${sjsuPerformance.projects[0]?.images?.length || 0} image${(sjsuPerformance.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}`
+										: `${calGameWeek.projects[0]?.subprojects?.length || 0} subproject${(calGameWeek.projects[0]?.subprojects?.length || 0) !== 1 ? 's' : ''}`
+									}
+								</span>
+							</div>
+							
+							<!-- Action Button -->
+							<a 
+								href={`/work/${collection.workPage}#${collection.anchor}`}
+								class={`inline-flex items-center w-full justify-center px-4 py-2 font-medium rounded-lg transition-all duration-300 text-sm ${
+									collection.workPage === 'sjsu-athletics'
+										? 'bg-blue-600 text-white hover:bg-blue-700'
+										: 'bg-yellow-600 text-white hover:bg-yellow-700'
+								}`}
+							>
+								View Collection
+								<svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				);
+			})}
+		</div>			<div class="text-center mt-12">
 				<a 
 					href="/work" 
 					class="inline-flex items-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
