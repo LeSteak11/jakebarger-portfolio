@@ -1,0 +1,87 @@
+{
+  "category": "Performance Highlights",
+  "description": "Awards, achievements, and statistical graphics from SJSU Athletics.",
+  "projects": [
+    {
+      "title": "Performance Highlights (SJSU)",
+      "description": "Collection of award and milestone graphics across all sports.",
+      "images": [
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_Coach100Wins_2023.jpg",
+          "alt": "SJSU Baseball Coach 100 Wins 2023",
+          "tags": ["baseball", "awards", "milestones"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_ColettePOTW-IG_2023.jpg",
+          "alt": "SJSU Baseball Colette Player of the Week 2023",
+          "tags": ["baseball", "player-of-week"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_GYM_JaudaiSchoolRecord_2023.jpg",
+          "alt": "SJSU Gymnastics Jaudai School Record 2023",
+          "tags": ["gymnastics", "records"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MBB_Omari1k_2023.jpg",
+          "alt": "SJSU Men's Basketball Omari 1000 Points 2023",
+          "tags": ["mens-basketball", "milestones"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MGolf_CorpusPOTW_2023.jpg",
+          "alt": "SJSU Men's Golf Corpus Player of the Week 2023",
+          "tags": ["mens-golf", "player-of-week"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__AllMWPreseason_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer All Mountain West Preseason Fall 2023",
+          "tags": ["mens-soccer", "preseason", "all-conference"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__Clinched_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer Clinched Fall 2023",
+          "tags": ["mens-soccer", "postseason"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__SeniorDay_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer Senior Day Fall 2023",
+          "tags": ["mens-soccer", "senior-day"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__SweeneySaves_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer Sweeney Saves Fall 2023",
+          "tags": ["mens-soccer", "statistics"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__WACAward1_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer WAC Award Fall 2023",
+          "tags": ["mens-soccer", "awards"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Softball_FOTW-Noreiga_2023.jpg",
+          "alt": "SJSU Softball Freshman of the Week Noreiga 2023",
+          "tags": ["softball", "freshman-of-week"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Softball_UlluegePOTW_2023.jpg",
+          "alt": "SJSU Softball Ulluege Player of the Week 2023",
+          "tags": ["softball", "player-of-week"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Tennis_AllMW-Millan_2023.jpg",
+          "alt": "SJSU Tennis All Mountain West Millan 2023",
+          "tags": ["tennis", "all-conference"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Slusser-AllMW_Fall2023.jpg",
+          "alt": "SJSU Volleyball Slusser All Mountain West Fall 2023",
+          "tags": ["volleyball", "all-conference"]
+        },
+        {
+          "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Tia-MWFreshman_Fall2023.jpg",
+          "alt": "SJSU Volleyball Tia Mountain West Freshman Fall 2023",
+          "tags": ["volleyball", "freshman-of-year"]
+        }
+      ]
+    }
+  ]
+}

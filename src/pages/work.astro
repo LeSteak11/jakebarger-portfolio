@@ -6,70 +6,56 @@ import TagFilter from '../components/TagFilter.astro';
 // Import all project data
 import sjsuSchedules from '../../data/sjsu-athletics/schedule-posters.json';
 import sjsuGameday from '../../data/sjsu-athletics/gameday-content.json';
-import sjsuPerformance from '../../data/sjsu-athletics/performance-highlights-sjsu.json';
-import sjsuSocial from '../../data/sjsu-athletics/social-promo.json';
-import sjsuPhotography from '../../data/sjsu-athletics/photography.json';
-import calStats from '../../data/cal-football/stats-awards.json';
-import calGameday from '../../data/cal-football/gameday-campaigns.json';
-import calRecruiting from '../../data/cal-football/recruiting.json';
+import sjsuPerformance from '../../data/sjsu-athletics/performance-highlights.json';
+import calPerformance from '../../data/cal-football/performance-highlights.json';
+import calGameWeek from '../../data/cal-football/game-week-content.json';
+import calRecruiting from '../../data/cal-football/recruiting-content.json';
+import calNFL from '../../data/cal-football/nfl-draft-content.json';
+
+// Helper function to process projects and subprojects
+function processProjects(dataCategory) {
+  const allProjects = [];
+  
+  dataCategory.projects.forEach(project => {
+    if (project.subprojects) {
+      // Handle projects with subprojects - create individual projects for each subproject
+      project.subprojects.forEach(subproject => {
+        allProjects.push({
+          id: `${project.title.toLowerCase().replace(/\s+/g, '-')}-${subproject.title.toLowerCase().replace(/\s+/g, '-')}`,
+          title: `${project.title} - ${subproject.title}`,
+          description: `${project.description} - ${subproject.title}`,
+          tags: [...new Set(subproject.images.flatMap(img => img.tags || []))],
+          images: subproject.images,
+          year: 2023,
+          featured: false
+        });
+      });
+    } else {
+      // Handle flat projects (just images)
+      allProjects.push({
+        id: project.title.toLowerCase().replace(/\s+/g, '-'),
+        title: project.title,
+        description: project.description,
+        tags: [...new Set(project.images.flatMap(img => img.tags || []))],
+        images: project.images,
+        year: 2023,
+        featured: false
+      });
+    }
+  });
+  
+  return allProjects;
+}
 
 // Combine all projects into one array
-// Convert simplified image objects to consistent project format
 const allProjects = [
-  // SJSU Schedule Posters
-  ...sjsuSchedules.projects.map(item => ({
-    id: `sched-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // SJSU Gameday Content
-  ...sjsuGameday.projects.map(item => ({
-    id: `game-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // SJSU Performance Highlights
-  ...sjsuPerformance.images.map(image => ({
-    id: `perf-${image.src.split('/').pop().split('.')[0]}`,
-    title: image.alt,
-    description: image.alt,
-    tags: image.tags,
-    images: [{ src: image.src, alt: image.alt }],
-    year: image.year,
-    featured: image.featured
-  })),
-  // SJSU Social Media
-  ...sjsuSocial.projects.map(item => ({
-    id: `social-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // SJSU Photography
-  ...sjsuPhotography.projects.map(item => ({
-    id: `photo-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // Cal Football (keeping original structure for now)
-  ...calStats.projects,
-  ...calGameday.projects,
-  ...calRecruiting.projects
+  ...processProjects(sjsuPerformance),
+  ...processProjects(sjsuSchedules),
+  ...processProjects(sjsuGameday),
+  ...processProjects(calPerformance),
+  ...processProjects(calGameWeek),
+  ...processProjects(calRecruiting),
+  ...processProjects(calNFL)
 ];
 
 // Get unique tags for filtering

@@ -4,48 +4,60 @@ import ProjectGrid from '../../components/ProjectGrid.astro';
 import Gallery from '../../components/Gallery.astro';
 
 // Import Cal Football data
-import statsAwards from '../../../data/cal-football/stats-awards.json';
-import gamedayCampaigns from '../../../data/cal-football/gameday-campaigns.json';
-import recruiting from '../../../data/cal-football/recruiting.json';
+import performanceHighlights from '../../../data/cal-football/performance-highlights.json';
+import gameWeekContent from '../../../data/cal-football/game-week-content.json';
+import recruitingContent from '../../../data/cal-football/recruiting-content.json';
+import nflDraftContent from '../../../data/cal-football/nfl-draft-content.json';
 
-// Create offseason data from file structure (placeholder since we didn't create this file yet)
-const offseasonPromos = {
-  category: "Off-Season & Promotions",
-  description: "Spring practice graphics, NFL Draft celebrations, and off-season promotional content",
-  projects: [
-    {
-      id: "cal-offseason-001",
-      title: "NFL Draft Celebration Graphics",
-      description: "Graphics celebrating Cal Football alumni drafted to the NFL",
-      tags: ["nfl-draft", "alumni", "celebration"],
-      images: [
-        {
-          src: "/images/cal-football/offseason/nfl-draft-2023.jpg",
-          alt: "Cal Football NFL Draft Celebration",
-          caption: "2023 NFL Draft Cal Alumni"
-        }
-      ],
-      year: 2023,
-      sports: ["football"],
-      featured: true
+// Helper function to process projects and subprojects
+function processProjects(dataCategory) {
+  const allProjects = [];
+  
+  dataCategory.projects.forEach(project => {
+    if (project.subprojects) {
+      // Handle projects with subprojects - create individual projects for each subproject
+      project.subprojects.forEach(subproject => {
+        allProjects.push({
+          id: `${project.title.toLowerCase().replace(/\s+/g, '-')}-${subproject.title.toLowerCase().replace(/\s+/g, '-')}`,
+          title: `${project.title} - ${subproject.title}`,
+          description: `${project.description} - ${subproject.title}`,
+          tags: [...new Set(subproject.images.flatMap(img => img.tags || []))],
+          images: subproject.images,
+          year: 2022,
+          featured: false
+        });
+      });
+    } else {
+      // Handle flat projects (just images)
+      allProjects.push({
+        id: project.title.toLowerCase().replace(/\s+/g, '-'),
+        title: project.title,
+        description: project.description,
+        tags: [...new Set(project.images.flatMap(img => img.tags || []))],
+        images: project.images,
+        year: 2022,
+        featured: false
+      });
     }
-  ]
-};
+  });
+  
+  return allProjects;
+}
 
 // Combine all Cal projects
 const allCalProjects = [
-  ...statsAwards.projects,
-  ...gamedayCampaigns.projects,
-  ...recruiting.projects,
-  ...offseasonPromos.projects
+  ...processProjects(performanceHighlights),
+  ...processProjects(gameWeekContent),
+  ...processProjects(recruitingContent),
+  ...processProjects(nflDraftContent)
 ];
 
 // Categories for navigation
 const categories = [
-  { name: "Stats, Awards & Achievements", data: statsAwards, id: "stats-awards" },
-  { name: "Gameday Campaigns", data: gamedayCampaigns, id: "gameday" },
-  { name: "Recruiting & Commitment Content", data: recruiting, id: "recruiting" },
-  { name: "Off-Season & Promotions", data: offseasonPromos, id: "offseason" }
+  { name: "Performance Highlights", data: performanceHighlights, id: "performance" },
+  { name: "Game Week Content", data: gameWeekContent, id: "gameweek" },
+  { name: "Recruiting Content", data: recruitingContent, id: "recruiting" },
+  { name: "NFL Draft Content", data: nflDraftContent, id: "nfl-draft" }
 ];
 
 // Sample highlight images for hero

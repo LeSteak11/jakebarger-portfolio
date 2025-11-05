@@ -1,0 +1,82 @@
+{
+  "category": "Performance Highlights",
+  "description": "Awards, achievements, and statistical graphics from Cal Football.",
+  "projects": [
+    {
+      "title": "Performance Highlights (Cal)",
+      "description": "Collection of award and statistical graphics from Cal Football.",
+      "images": [
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_AcademicAll-District_2022.jpg",
+          "alt": "Cal Academic All District Award 2022",
+          "tags": ["academic", "awards"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_Cindric-CampbellTrophySemi_2022.jpg",
+          "alt": "Cal Cindric Campbell Trophy Semifinalist 2022",
+          "tags": ["awards", "campbell-trophy"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_Longhetto-Burlsworth_2022.jpg",
+          "alt": "Cal Longhetto Burlsworth Award 2022",
+          "tags": ["awards", "burlsworth"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_MooreWatchList_2022.jpg",
+          "alt": "Cal Moore Watch List 2022",
+          "tags": ["awards", "watch-list"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_OttFPOTW1_2022.jpg",
+          "alt": "Cal Ott Freshman Player of the Week 2022",
+          "tags": ["player-of-week", "freshman"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_PlummerWatchList_2022.jpg",
+          "alt": "Cal Plummer Watch List 2022",
+          "tags": ["awards", "watch-list"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_Scott-SeniorBowl_2022.jpg",
+          "alt": "Cal Scott Senior Bowl 2022",
+          "tags": ["awards", "senior-bowl"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_Award_StrudWatchList_2022.jpg",
+          "alt": "Cal Strud Watch List 2022",
+          "tags": ["awards", "watch-list"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_StatGraphic_OttCarousel_2022.jpg",
+          "alt": "Cal Ott Statistics Carousel 2022",
+          "tags": ["statistics", "carousel"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_StatGraphic_OttScrimmageYds_2022.jpg",
+          "alt": "Cal Ott Scrimmage Yards Statistics 2022",
+          "tags": ["statistics", "rushing"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_StatGraphic_OttvsAZ_2022.jpg",
+          "alt": "Cal Ott vs Arizona Statistics 2022",
+          "tags": ["statistics", "game-stats"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_StatGraphic_TackleDuo_2022.jpg",
+          "alt": "Cal Tackle Duo Statistics 2022",
+          "tags": ["statistics", "defense"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_StatGraphic_TakeawayStreak_2022.jpg",
+          "alt": "Cal Takeaway Streak Statistics 2022",
+          "tags": ["statistics", "defense", "streak"]
+        },
+        {
+          "src": "/images/cal-football/performance-highlights-cal/CAL_InSeason_StatGraphic_WoodsonStats_2022.jpg",
+          "alt": "Cal Woodson Statistics 2022",
+          "tags": ["statistics", "player-stats"]
+        }
+      ]
+    }
+  ]
+}

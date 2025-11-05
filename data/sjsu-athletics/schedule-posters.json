@@ -1,27 +1,137 @@
 {
-  "category": "Schedule & Tournament Posters",
-  "description": "Creative schedule posters and tournament announcements.",
+  "category": "Schedule Posters",
+  "description": "Complete series of SJSU schedule posters and tournament graphics.",
   "projects": [
     {
-      "src": "/images/sjsu/schedules/fall-2023-soccer.jpg",
-      "alt": "SJSU Men's Soccer Fall 2023 Schedule",
-      "tags": ["schedules", "soccer", "fall"],
-      "year": 2023,
-      "featured": true
-    },
-    {
-      "src": "/images/sjsu/schedules/fall-2023-volleyball.jpg",
-      "alt": "SJSU Volleyball Fall 2023 Schedule",
-      "tags": ["schedules", "volleyball", "fall"],
-      "year": 2023,
-      "featured": false
-    },
-    {
-      "src": "/images/sjsu/tournaments/mw-tournament.jpg",
-      "alt": "Mountain West Tournament Bracket",
-      "tags": ["tournaments", "brackets", "basketball"],
-      "year": 2023,
-      "featured": false
+      "title": "Schedule Posters",
+      "description": "Full series schedule posters and tournament graphics.",
+      "subprojects": [
+        {
+          "title": "Fall 2023 Series",
+          "images": [
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_Football_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Football Schedule Poster Fall 2023",
+              "tags": ["football", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_MBB_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Men's Basketball Schedule Poster Fall 2023",
+              "tags": ["mens-basketball", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_MSOC_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Men's Soccer Schedule Poster Fall 2023",
+              "tags": ["mens-soccer", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_MWP_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Men's Water Polo Schedule Poster Fall 2023",
+              "tags": ["mens-water-polo", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_NBCBA_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU NBCBA Schedule Poster Fall 2023",
+              "tags": ["nbcba", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_SchedulePosters_Fall2023_FullSet.jpg",
+              "alt": "SJSU Schedule Posters Fall 2023 Full Set",
+              "tags": ["all-sports", "schedule", "overview"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_SwimDive_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Swimming & Diving Schedule Poster Fall 2023",
+              "tags": ["swimming-diving", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_Tennis_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Tennis Schedule Poster Fall 2023",
+              "tags": ["tennis", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_Volleyball_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Volleyball Schedule Poster Fall 2023",
+              "tags": ["volleyball", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_WBB_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Women's Basketball Schedule Poster Fall 2023",
+              "tags": ["womens-basketball", "schedule"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/fall-2023-series/SJSU_WSOC_SchedulePoster_Fall2023.jpg",
+              "alt": "SJSU Women's Soccer Schedule Poster Fall 2023",
+              "tags": ["womens-soccer", "schedule"]
+            }
+          ]
+        },
+        {
+          "title": "Tournaments",
+          "images": [
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_BVB_SCChampionship-Poster-web_2023.jpg",
+              "alt": "SJSU Beach Volleyball SC Championship Poster 2023",
+              "tags": ["beach-volleyball", "championship"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_GYM_MPSFChampionship-Poster_2023.jpg",
+              "alt": "SJSU Gymnastics MPSF Championship Poster 2023",
+              "tags": ["gymnastics", "championship"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_MGolf_76thWestern_2023.jpg",
+              "alt": "SJSU Men's Golf 76th Western Tournament 2023",
+              "tags": ["mens-golf", "tournament"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_MSOC_WSOC__Doubleheader1_Fall2023.jpg",
+              "alt": "SJSU Men's & Women's Soccer Doubleheader Fall 2023",
+              "tags": ["mens-soccer", "womens-soccer", "doubleheader"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_Softball_TournamentPoster_JGClassic_2023.jpg",
+              "alt": "SJSU Softball JG Classic Tournament Poster 2023",
+              "tags": ["softball", "tournament"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_Softball_TournamentPoster_MCInv_2023.jpg",
+              "alt": "SJSU Softball MC Invitational Tournament Poster 2023",
+              "tags": ["softball", "tournament"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_Tennis_MWChampionship-Poster_2023.jpg",
+              "alt": "SJSU Tennis Mountain West Championship Poster 2023",
+              "tags": ["tennis", "championship"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_VB_AAPIGame_Fall2023.jpg",
+              "alt": "SJSU Volleyball AAPI Game Fall 2023",
+              "tags": ["volleyball", "special-event"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_VB_BlockParty_Fall2023.jpg",
+              "alt": "SJSU Volleyball Block Party Fall 2023",
+              "tags": ["volleyball", "special-event"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_VB_SCTournament_Fall2023.jpg",
+              "alt": "SJSU Volleyball SC Tournament Fall 2023",
+              "tags": ["volleyball", "tournament"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_WBB_MWTournament_Game1Poster_2023.jpg",
+              "alt": "SJSU Women's Basketball MW Tournament Game 1 Poster 2023",
+              "tags": ["womens-basketball", "tournament"]
+            },
+            {
+              "src": "/images/sjsu-athletics/schedule-posters/tournaments/SJSU_WGolf_BattleofBay_2023.jpg",
+              "alt": "SJSU Women's Golf Battle of the Bay 2023",
+              "tags": ["womens-golf", "tournament"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

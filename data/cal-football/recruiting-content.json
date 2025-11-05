@@ -1,0 +1,157 @@
+{
+  "category": "Recruiting Content",
+  "description": "Junior Day events, National Signing Day graphics, and recruiting templates.",
+  "projects": [
+    {
+      "title": "Recruiting Content",
+      "description": "Complete recruiting coverage including Junior Day, National Signing Day, and templates.",
+      "subprojects": [
+        {
+          "title": "Junior Day",
+          "images": [
+            {
+              "src": "/images/cal-football/recruiting-content/junior-day/CAL_Recruiting_JuniorDay_CoverImage_2022.jpg",
+              "alt": "Cal Junior Day Cover Image 2022",
+              "tags": ["junior-day", "cover"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/junior-day/CAL_Recruiting_JuniorDay_Template1_2022.jpg",
+              "alt": "Cal Junior Day Template 1 2022",
+              "tags": ["junior-day", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/junior-day/CAL_Recruiting_JuniorDay_Template2_2022.jpg",
+              "alt": "Cal Junior Day Template 2 2022",
+              "tags": ["junior-day", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/junior-day/CAL_Recruiting_JuniorDay_Template3_2022.jpg",
+              "alt": "Cal Junior Day Template 3 2022",
+              "tags": ["junior-day", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/junior-day/CAL_Recruiting_JuniorDay_Template4_2022.jpg",
+              "alt": "Cal Junior Day Template 4 2022",
+              "tags": ["junior-day", "templates"]
+            }
+          ]
+        },
+        {
+          "title": "National Signing Day",
+          "images": [
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Brown_2022.jpg",
+              "alt": "Cal National Signing Day Brown 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Earby_2022.jpg",
+              "alt": "Cal National Signing Day Earby 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Hayes_2022.jpg",
+              "alt": "Cal National Signing Day Hayes 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Morrow_2022.jpg",
+              "alt": "Cal National Signing Day Morrow 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Ott_2022.jpg",
+              "alt": "Cal National Signing Day Ott 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Plummer_2022.jpg",
+              "alt": "Cal National Signing Day Plummer 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Sidney_2022.jpg",
+              "alt": "Cal National Signing Day Sidney 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Starling_2022.jpg",
+              "alt": "Cal National Signing Day Starling 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-ThomasIV_2022.jpg",
+              "alt": "Cal National Signing Day Thomas IV 2022",
+              "tags": ["national-signing-day", "recruit"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/national-signing-day/CAL_Recruiting_NSD-Tuitele_2022.jpg",
+              "alt": "Cal National Signing Day Tuitele 2022",
+              "tags": ["national-signing-day", "recruit"]
+            }
+          ]
+        },
+        {
+          "title": "Recruiting Templates",
+          "images": [
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_OffSeason_NFLDraft_GoodLuck11_2022.jpg",
+              "alt": "Cal NFL Draft Good Luck 11 2022",
+              "tags": ["nfl-draft", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_OffSeason_NFLDraft_GoodLuck2_2022.jpg",
+              "alt": "Cal NFL Draft Good Luck 2 2022",
+              "tags": ["nfl-draft", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_OffSeason_NFLDraft_GoodLuck3_2022.jpg",
+              "alt": "Cal NFL Draft Good Luck 3 2022",
+              "tags": ["nfl-draft", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_OffSeason_NFLDraft_GoodLuck4_2022.jpg",
+              "alt": "Cal NFL Draft Good Luck 4 2022",
+              "tags": ["nfl-draft", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_OffSeason_NFLDraft_GoodLuck7_2022.jpg",
+              "alt": "Cal NFL Draft Good Luck 7 2022",
+              "tags": ["nfl-draft", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_Recruiting_Templates_GoodLuck10_2022.jpg",
+              "alt": "Cal Recruiting Templates Good Luck 10 2022",
+              "tags": ["recruiting", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_Recruiting_Templates_GoodLuck1_2022.jpg",
+              "alt": "Cal Recruiting Templates Good Luck 1 2022",
+              "tags": ["recruiting", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_Recruiting_Templates_GoodLuck5_2022.jpg",
+              "alt": "Cal Recruiting Templates Good Luck 5 2022",
+              "tags": ["recruiting", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_Recruiting_Templates_GoodLuck6_2022.jpg",
+              "alt": "Cal Recruiting Templates Good Luck 6 2022",
+              "tags": ["recruiting", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_Recruiting_Templates_GoodLuck8_2022.jpg",
+              "alt": "Cal Recruiting Templates Good Luck 8 2022",
+              "tags": ["recruiting", "good-luck", "templates"]
+            },
+            {
+              "src": "/images/cal-football/recruiting-content/recruiting-templates/CAL_Recruiting_Templates_GoodLuck9_2022.jpg",
+              "alt": "Cal Recruiting Templates Good Luck 9 2022",
+              "tags": ["recruiting", "good-luck", "templates"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

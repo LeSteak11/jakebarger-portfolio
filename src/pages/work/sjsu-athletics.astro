@@ -6,112 +6,65 @@ import Gallery from '../../components/Gallery.astro';
 // Import SJSU Athletics data
 import schedulePosters from '../../../data/sjsu-athletics/schedule-posters.json';
 import gamedayContent from '../../../data/sjsu-athletics/gameday-content.json';
-import performanceHighlights from '../../../data/sjsu-athletics/performance-highlights-sjsu.json';
-import socialPromo from '../../../data/sjsu-athletics/social-promo.json';
-import photography from '../../../data/sjsu-athletics/photography.json';
+import performanceHighlights from '../../../data/sjsu-athletics/performance-highlights.json';
+
+// Helper function to process projects and subprojects
+function processProjects(dataCategory) {
+  const allProjects = [];
+  
+  dataCategory.projects.forEach(project => {
+    if (project.subprojects) {
+      // Handle projects with subprojects - create individual projects for each subproject
+      project.subprojects.forEach(subproject => {
+        allProjects.push({
+          id: `${project.title.toLowerCase().replace(/\s+/g, '-')}-${subproject.title.toLowerCase().replace(/\s+/g, '-')}`,
+          title: `${project.title} - ${subproject.title}`,
+          description: `${project.description} - ${subproject.title}`,
+          tags: [...new Set(subproject.images.flatMap(img => img.tags || []))],
+          images: subproject.images,
+          year: 2023,
+          featured: false
+        });
+      });
+    } else {
+      // Handle flat projects (just images)
+      allProjects.push({
+        id: project.title.toLowerCase().replace(/\s+/g, '-'),
+        title: project.title,
+        description: project.description,
+        tags: [...new Set(project.images.flatMap(img => img.tags || []))],
+        images: project.images,
+        year: 2023,
+        featured: false
+      });
+    }
+  });
+  
+  return allProjects;
+}
 
 // Combine all SJSU projects
-// Convert all simplified image objects to consistent project format
 const allSJSUProjects = [
-  // Convert schedule posters
-  ...schedulePosters.projects.map(item => ({
-    id: `sched-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // Convert gameday content
-  ...gamedayContent.projects.map(item => ({
-    id: `game-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // Convert performance highlights
-  ...performanceHighlights.images.map(image => ({
-    id: `perf-${image.src.split('/').pop().split('.')[0]}`,
-    title: image.alt,
-    description: image.alt,
-    tags: image.tags,
-    images: [{ src: image.src, alt: image.alt }],
-    year: image.year,
-    featured: image.featured
-  })),
-  // Convert social promo
-  ...socialPromo.projects.map(item => ({
-    id: `social-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  })),
-  // Convert photography
-  ...photography.projects.map(item => ({
-    id: `photo-${item.src.split('/').pop().split('.')[0]}`,
-    title: item.alt,
-    description: item.alt,
-    tags: item.tags,
-    images: [{ src: item.src, alt: item.alt }],
-    year: item.year,
-    featured: item.featured
-  }))
+  ...processProjects(performanceHighlights),
+  ...processProjects(schedulePosters),
+  ...processProjects(gamedayContent)
 ];
 
 // Categories for navigation
 const categories = [
-  { 
-    name: "Schedule & Tournament Posters", 
-    data: { 
-      ...schedulePosters, 
-      projects: schedulePosters.projects.map(item => ({
-        id: `sched-${item.src.split('/').pop().split('.')[0]}`,
-        title: item.alt,
-        description: item.alt,
-        tags: item.tags,
-        images: [{ src: item.src, alt: item.alt }],
-        year: item.year,
-        featured: item.featured
-      }))
-    }, 
-    id: "schedules" 
-  },
-  { 
-    name: "Gameday & Matchday Content", 
-    data: { 
-      ...gamedayContent, 
-      projects: gamedayContent.projects.map(item => ({
-        id: `game-${item.src.split('/').pop().split('.')[0]}`,
-        title: item.alt,
-        description: item.alt,
-        tags: item.tags,
-        images: [{ src: item.src, alt: item.alt }],
-        year: item.year,
-        featured: item.featured
-      }))
-    }, 
-    id: "gameday" 
-  },
-  { 
-    name: "Performance Highlights", 
-    data: { 
-      ...performanceHighlights, 
-      projects: performanceHighlights.images.map(image => ({
-        id: `perf-${image.src.split('/').pop().split('.')[0]}`,
-        title: image.alt,
-        description: image.alt,
-        tags: image.tags,
-        images: [{ src: image.src, alt: image.alt }],
-        year: image.year,
-        featured: image.featured
-      }))
+  { name: "Performance Highlights", data: performanceHighlights, id: "performance" },
+  { name: "Schedule Posters", data: schedulePosters, id: "schedules" },
+  { name: "Gameday Content", data: gamedayContent, id: "gameday" }
+]; 
+      projects: [{
+        id: 'sjsu-performance-highlights',
+        title: performanceHighlights.category,
+        description: performanceHighlights.description,
+        tags: [...new Set(performanceHighlights.images.flatMap(img => img.tags || []))],
+        images: performanceHighlights.images.map(img => ({ src: img.src, alt: img.alt })),
+        year: 2023,
+        featured: performanceHighlights.images.some(img => img.featured)
+      }]
     }, 
     id: "performance" 
   },

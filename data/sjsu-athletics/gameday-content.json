@@ -1,27 +1,47 @@
 {
-  "category": "Gameday & Matchday Content",
-  "description": "Game day graphics, matchday previews, and live event content.",
+  "category": "Gameday Content",
+  "description": "Templates and graphics for gameday coverage and match updates.",
   "projects": [
     {
-      "src": "/images/sjsu/gameday/mbb-homecoming.jpg",
-      "alt": "SJSU Men's Basketball Homecoming Game",
-      "tags": ["gameday", "basketball", "homecoming"],
-      "year": 2023,
-      "featured": true
-    },
-    {
-      "src": "/images/sjsu/gameday/mbb-senior-night.jpg",
-      "alt": "SJSU Men's Basketball Senior Night",
-      "tags": ["gameday", "basketball", "senior-night"],
-      "year": 2023,
-      "featured": false
-    },
-    {
-      "src": "/images/sjsu/gameday/vb-match-preview.jpg",
-      "alt": "SJSU Volleyball Match Preview",
-      "tags": ["volleyball", "match-preview", "gameday"],
-      "year": 2023,
-      "featured": false
+      "title": "Gameday Content",
+      "description": "Collection of gameday templates and match coverage graphics.",
+      "images": [
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_Baseball_Template_Gameday-web_2023.jpg",
+          "alt": "SJSU Baseball Gameday Template 2023",
+          "tags": ["baseball", "gameday", "templates"]
+        },
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_MSOC_Template_FinalScore_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer Final Score Template Fall 2023",
+          "tags": ["mens-soccer", "final-score", "templates"]
+        },
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_MSOC_Template_MatchWeek-web_Fall2023.jpg",
+          "alt": "SJSU Men's Soccer Match Week Template Fall 2023",
+          "tags": ["mens-soccer", "match-week", "templates"]
+        },
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_VB_Templates_MatchDay_Fall2023.jpg",
+          "alt": "SJSU Volleyball Match Day Templates Fall 2023",
+          "tags": ["volleyball", "match-day", "templates"]
+        },
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_VB_Templates_ScoreUpdate_Fall2023.jpg",
+          "alt": "SJSU Volleyball Score Update Templates Fall 2023",
+          "tags": ["volleyball", "score-update", "templates"]
+        },
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_WGolf_KajsaMWChamps_2023.jpg",
+          "alt": "SJSU Women's Golf Kajsa MW Champs 2023",
+          "tags": ["womens-golf", "championship"]
+        },
+        {
+          "src": "/images/sjsu-athletics/gameday-content/SJSU_WGolf_LuciaMWChamps_2023.jpg",
+          "alt": "SJSU Women's Golf Lucia MW Champs 2023",
+          "tags": ["womens-golf", "championship"]
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,72 @@
+{
+  "category": "NFL Draft Content",
+  "description": "NFL Draft coverage, signings, and Pro Bears graphics.",
+  "projects": [
+    {
+      "title": "NFL Draft Content",
+      "description": "Complete NFL Draft coverage including drafted players, signings, and good luck graphics.",
+      "images": [
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft-Hicks-Swap_2022.jpg",
+          "alt": "Cal NFL Draft Hicks Team Swap 2022",
+          "tags": ["nfl-draft", "team-swap"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Clark-Signed_2022.jpg",
+          "alt": "Cal NFL Draft Clark Signed 2022",
+          "tags": ["nfl-draft", "signed"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Crawford-Signed_2022.jpg",
+          "alt": "Cal NFL Draft Crawford Signed 2022",
+          "tags": ["nfl-draft", "signed"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Deng-Signed_2022.jpg",
+          "alt": "Cal NFL Draft Deng Signed 2022",
+          "tags": ["nfl-draft", "signed"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Drayden-Signed_2022.jpg",
+          "alt": "Cal NFL Draft Drayden Signed 2022",
+          "tags": ["nfl-draft", "signed"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Garbers-Drafted_2022.jpg",
+          "alt": "Cal NFL Draft Garbers Drafted 2022",
+          "tags": ["nfl-draft", "drafted"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Goode-Drafted_2022.jpg",
+          "alt": "Cal NFL Draft Goode Drafted 2022",
+          "tags": ["nfl-draft", "drafted"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Goode-Swap_2022.jpg",
+          "alt": "Cal NFL Draft Goode Team Swap 2022",
+          "tags": ["nfl-draft", "team-swap"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_GoodLuck_2022.jpg",
+          "alt": "Cal NFL Draft Good Luck 2022",
+          "tags": ["nfl-draft", "good-luck"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Hicks-Drafted_2022.jpg",
+          "alt": "Cal NFL Draft Hicks Drafted 2022",
+          "tags": ["nfl-draft", "drafted"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_ProBears-web_2022.jpg",
+          "alt": "Cal Pro Bears Web Graphic 2022",
+          "tags": ["pro-bears", "overview"]
+        },
+        {
+          "src": "/images/cal-football/nfl-draft-content/CALOffSeason_NFLDraft_Tonges-Signed_2022.jpg",
+          "alt": "Cal NFL Draft Tonges Signed 2022",
+          "tags": ["nfl-draft", "signed"]
+        }
+      ]
+    }
+  ]
+}

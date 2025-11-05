@@ -1,0 +1,137 @@
+{
+  "category": "Game Week Content",
+  "description": "Matchup posters, gameday content, and victory graphics.",
+  "projects": [
+    {
+      "title": "Game Week Content",
+      "description": "Complete gameweek coverage including matchup posters, gameday content, and victory graphics.",
+      "subprojects": [
+        {
+          "title": "Matchup Posters",
+          "images": [
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_001-UNLV_2022.jpg",
+              "alt": "Cal vs UNLV Game Poster 2022",
+              "tags": ["matchup-poster", "unlv"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_002-NotreDame_2022.jpg",
+              "alt": "Cal vs Notre Dame Game Poster 2022",
+              "tags": ["matchup-poster", "notre-dame"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_003-UofA_2022.jpg",
+              "alt": "Cal vs Arizona Game Poster 2022",
+              "tags": ["matchup-poster", "arizona"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_004-WashingtonSt_2022.jpg",
+              "alt": "Cal vs Washington State Game Poster 2022",
+              "tags": ["matchup-poster", "washington-state"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_005-Boulder_2022.jpg",
+              "alt": "Cal vs Colorado Game Poster 2022",
+              "tags": ["matchup-poster", "colorado"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_006-UW_2022.jpg",
+              "alt": "Cal vs Washington Game Poster 2022",
+              "tags": ["matchup-poster", "washington"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_007-Oregon-Halloween_2022.jpg",
+              "alt": "Cal vs Oregon Halloween Game Poster 2022",
+              "tags": ["matchup-poster", "oregon", "halloween"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_008-USC_2022.jpg",
+              "alt": "Cal vs USC Game Poster 2022",
+              "tags": ["matchup-poster", "usc"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_009-OregonSt_2022.jpg",
+              "alt": "Cal vs Oregon State Game Poster 2022",
+              "tags": ["matchup-poster", "oregon-state"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/matchup-posters/CAL_InSeason_GamePoster_010-Stanford-BigGame_2022.jpg",
+              "alt": "Cal vs Stanford Big Game Poster 2022",
+              "tags": ["matchup-poster", "stanford", "big-game"]
+            }
+          ]
+        },
+        {
+          "title": "Game Day Content",
+          "images": [
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_001-UCDavis_2022.jpg",
+              "alt": "Cal vs UC Davis Game Day 2022",
+              "tags": ["gameday", "uc-davis"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_004-WashSt_2022.jpg",
+              "alt": "Cal vs Washington State Game Day 2022",
+              "tags": ["gameday", "washington-state"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_006-UW_2022.jpg",
+              "alt": "Cal vs Washington Game Day 2022",
+              "tags": ["gameday", "washington"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_007-Oregon_2022.jpg",
+              "alt": "Cal vs Oregon Game Day 2022",
+              "tags": ["gameday", "oregon"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_008-USC_2022.jpg",
+              "alt": "Cal vs USC Game Day 2022",
+              "tags": ["gameday", "usc"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_009-OregonSt_2022.jpg",
+              "alt": "Cal vs Oregon State Game Day 2022",
+              "tags": ["gameday", "oregon-state"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/game-day-content/CAL_InSeason_GameDay_010-BigGame_2022.jpg",
+              "alt": "Cal Big Game Day 2022",
+              "tags": ["gameday", "big-game", "stanford"]
+            }
+          ]
+        },
+        {
+          "title": "Victory Graphics",
+          "images": [
+            {
+              "src": "/images/cal-football/game-week-content/victory-graphics/CAL_InSeason_VictoryGraphic_001-UNLV_2022.jpg",
+              "alt": "Cal Victory vs UNLV 2022",
+              "tags": ["victory", "unlv"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/victory-graphics/CAL_InSeason_VictoryGraphic_002-ND_2022.jpg",
+              "alt": "Cal Victory vs Notre Dame 2022",
+              "tags": ["victory", "notre-dame"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/victory-graphics/CAL_InSeason_VictoryGraphic_003-Arizona_2022.jpg",
+              "alt": "Cal Victory vs Arizona 2022",
+              "tags": ["victory", "arizona"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/victory-graphics/CAL_InSeason_VictoryGraphic_005-Boulder_2022.jpg",
+              "alt": "Cal Victory vs Colorado 2022",
+              "tags": ["victory", "colorado"]
+            },
+            {
+              "src": "/images/cal-football/game-week-content/victory-graphics/CAL_InSeason_VictoryGraphic_006-BigGame_2022.jpg",
+              "alt": "Cal Big Game Victory 2022",
+              "tags": ["victory", "big-game", "stanford"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
