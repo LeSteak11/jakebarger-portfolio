@@ -1,9 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectGrid from '../components/ProjectGrid.astro';
-import TagFilter from '../components/TagFilter.astro';
 
-// Import all project data
+// Import all project data for collection cards
 import sjsuSchedules from '../../data/sjsu-athletics/schedule-posters.json';
 import sjsuGameday from '../../data/sjsu-athletics/gameday-content.json';
 import sjsuPerformance from '../../data/sjsu-athletics/performance-highlights.json';
@@ -12,57 +10,67 @@ import calGameWeek from '../../data/cal-football/game-week-content.json';
 import calRecruiting from '../../data/cal-football/recruiting-content.json';
 import calNFL from '../../data/cal-football/nfl-draft-content.json';
 
-// Helper function to process projects and subprojects
-function processProjects(dataCategory) {
-  const allProjects = [];
-  
-  dataCategory.projects.forEach(project => {
-    if (project.subprojects) {
-      // Handle projects with subprojects - create individual projects for each subproject
-      project.subprojects.forEach(subproject => {
-        allProjects.push({
-          id: `${project.title.toLowerCase().replace(/\s+/g, '-')}-${subproject.title.toLowerCase().replace(/\s+/g, '-')}`,
-          title: `${project.title} - ${subproject.title}`,
-          description: `${project.description} - ${subproject.title}`,
-          tags: [...new Set(subproject.images.flatMap(img => img.tags || []))],
-          images: subproject.images,
-          year: 2023,
-          featured: false
-        });
-      });
-    } else {
-      // Handle flat projects (just images)
-      allProjects.push({
-        id: project.title.toLowerCase().replace(/\s+/g, '-'),
-        title: project.title,
-        description: project.description,
-        tags: [...new Set(project.images.flatMap(img => img.tags || []))],
-        images: project.images,
-        year: 2023,
-        featured: false
-      });
-    }
-  });
-  
-  return allProjects;
-}
-
-// Combine all projects into one array
-const allProjects = [
-  ...processProjects(sjsuPerformance),
-  ...processProjects(sjsuSchedules),
-  ...processProjects(sjsuGameday),
-  ...processProjects(calPerformance),
-  ...processProjects(calGameWeek),
-  ...processProjects(calRecruiting),
-  ...processProjects(calNFL)
+// Define all collection cards - exact copies from individual work pages
+const allCollections = [
+  // SJSU Athletics Collections
+  { 
+    name: "Performance Highlights", 
+    data: sjsuPerformance, 
+    id: "performance",
+    type: "flat",
+    workPage: "sjsu-athletics",
+    color: "blue"
+  },
+  { 
+    name: "Schedule Posters", 
+    data: sjsuSchedules, 
+    id: "schedules",
+    type: "nested",
+    workPage: "sjsu-athletics",
+    color: "blue"
+  },
+  { 
+    name: "Gameday Content", 
+    data: sjsuGameday, 
+    id: "gameday",
+    type: "flat",
+    workPage: "sjsu-athletics",
+    color: "blue"
+  },
+  // Cal Football Collections
+  { 
+    name: "Performance Highlights", 
+    data: calPerformance, 
+    id: "performance",
+    type: "flat",
+    workPage: "cal-football",
+    color: "yellow"
+  },
+  { 
+    name: "Game Week Content", 
+    data: calGameWeek, 
+    id: "gameweek",
+    type: "nested",
+    workPage: "cal-football",
+    color: "yellow"
+  },
+  { 
+    name: "Recruiting Content", 
+    data: calRecruiting, 
+    id: "recruiting",
+    type: "nested",
+    workPage: "cal-football",
+    color: "yellow"
+  },
+  { 
+    name: "NFL Draft Content", 
+    data: calNFL, 
+    id: "nfl-draft",
+    type: "flat",
+    workPage: "cal-football",
+    color: "yellow"
+  }
 ];
-
-// Get unique tags for filtering
-const allTags = [...new Set(allProjects.flatMap(p => p.tags))];
-
-// Featured projects
-const featuredProjects = allProjects.filter(p => p.featured);
 ---
 
 <Layout title="Work - Jake Barger Portfolio">
@@ -70,16 +78,19 @@ const featuredProjects = allProjects.filter(p => p.featured);
   <section class="bg-gray-900 text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">My Work</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">All Work</h1>
         <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-          A comprehensive portfolio of sports design and photography work spanning multiple athletic programs and design categories.
+          A comprehensive collection of every project and design work across all categories. Browse the complete portfolio organized by collection.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#featured" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors">
-            View Featured Work
+          <a href="#collections" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors">
+            View All Collections
           </a>
-          <a href="#all-projects" class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
-            Browse All Projects
+          <a href="/work/sjsu-athletics" class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
+            SJSU Athletics
+          </a>
+          <a href="/work/cal-football" class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
+            Cal Football
           </a>
         </div>
       </div>
@@ -169,35 +180,101 @@ const featuredProjects = allProjects.filter(p => p.featured);
     </div>
   </section>
 
-  <!-- Featured Work Section -->
-  <section id="featured" class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- All Collections Section -->
+  <section id="collections" class="py-16 bg-gray-50">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-        <p class="text-lg text-gray-600">Highlighted work showcasing the best of each category.</p>
-      </div>
-      
-      <ProjectGrid projects={featuredProjects} />
-    </div>
-  </section>
-
-  <!-- All Projects Section -->
-  <section id="all-projects" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">All Projects</h2>
-        <p class="text-lg text-gray-600">
-          Browse the complete portfolio with advanced filtering options.
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">All Collections</h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          Every project collection from across all work categories. Click any card to jump directly to that collection on its respective work page.
         </p>
       </div>
-
-      <!-- Tag Filter Component -->
-      <div class="mb-8">
-        <TagFilter tags={allTags} placeholder="Filter by category, sport, or content type..." />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {allCollections.map((collection) => {
+          // Get thumbnail image
+          const thumbnail = collection.type === 'nested' 
+            ? collection.data.projects[0]?.subprojects?.[0]?.images?.[0]
+            : collection.data.projects[0]?.images?.[0];
+            
+          return (
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+              <!-- Thumbnail -->
+              <div class="relative h-48 bg-gray-200 overflow-hidden">
+                {thumbnail ? (
+                  <img 
+                    src={thumbnail.src} 
+                    alt={thumbnail.alt}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
+                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                )}
+                
+                <!-- Program Badge -->
+                <div class="absolute top-3 left-3">
+                  <span class={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
+                    collection.color === 'blue' 
+                      ? 'bg-blue-600 text-blue-100' 
+                      : 'bg-yellow-600 text-yellow-100'
+                  }`}>
+                    {collection.workPage === 'sjsu-athletics' ? 'SJSU Athletics' : 'Cal Football'}
+                  </span>
+                </div>
+              </div>
+              
+              <!-- Content -->
+              <div class="p-5">
+                <h3 class={`text-lg font-bold mb-2 transition-colors ${
+                  collection.color === 'blue' 
+                    ? 'text-gray-900 group-hover:text-blue-600' 
+                    : 'text-gray-900 group-hover:text-yellow-600'
+                }`}>
+                  {collection.name}
+                </h3>
+                <p class="text-gray-600 mb-4 text-sm leading-relaxed">{collection.data.description}</p>
+                
+                <!-- Meta Info -->
+                <div class="flex justify-between items-center text-xs text-gray-500 mb-4">
+                  <span class="font-medium">
+                    {collection.workPage === 'sjsu-athletics' ? '2023' : '2022'}
+                  </span>
+                  <span class={`px-2 py-1 rounded-full font-medium ${
+                    collection.color === 'blue' 
+                      ? 'bg-blue-50 text-blue-600' 
+                      : 'bg-yellow-50 text-yellow-600'
+                  }`}>
+                    {collection.type === 'nested' 
+                      ? `${collection.data.projects[0]?.subprojects?.length || 0} subproject${(collection.data.projects[0]?.subprojects?.length || 0) !== 1 ? 's' : ''}`
+                      : `${collection.data.projects[0]?.images?.length || 0} image${(collection.data.projects[0]?.images?.length || 0) !== 1 ? 's' : ''}`
+                    }
+                  </span>
+                </div>
+                
+                <!-- Action Button -->
+                <a 
+                  href={`/work/${collection.workPage}#${collection.id}`} 
+                  class={`inline-flex items-center w-full justify-center px-4 py-2 font-medium rounded-lg transition-all duration-300 text-sm ${
+                    collection.color === 'blue' 
+                      ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                      : 'bg-yellow-600 text-white hover:bg-yellow-700'
+                  }`}
+                >
+                  View Collection
+                  <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          );
+        })}
       </div>
-
-      <!-- Projects Grid with Filtering -->
-      <ProjectGrid projects={allProjects} showFilters={true} />
     </div>
   </section>
 

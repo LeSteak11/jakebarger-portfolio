@@ -1,0 +1,485 @@
+---
+export interface Props {
+  projects: Array<{
+    id: string;
+    title: string;
+    description: string;
+    tags: string[];
+    images: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+    year: number;
+    sports?: string[];
+    featured: boolean;
+    workAnchor?: string;
+  }>;
+  title?: string;
+  showFilters?: boolean;
+}
+
+const { projects, title, showFilters = false } = Astro.props;
+
+// Get unique tags and sports for filtering (handle optional sports)
+const allTags = [...new Set(projects.flatMap(p => p.tags || []))];
+const allSports = [...new Set(projects.flatMap(p => p.sports || []))].filter(Boolean);
+---
+
+<div class="project-grid-container">
+  {title && (
+    <div class="mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
+    </div>
+  )}
+
+  {showFilters && (
+    <div class="mb-8 p-4 bg-gray-50 rounded-lg">
+      <div class="flex flex-wrap gap-4">
+        <!-- Tag Filters -->
+        <div class="flex-1 min-w-64">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Category</label>
+          <select class="tag-filter w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+            <option value="">All Categories</option>
+            {allTags.map(tag => (
+              <option value={tag}>{tag.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Sport Filters -->
+        {allSports.length > 0 && (
+          <div class="flex-1 min-w-64">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Sport</label>
+            <select class="sport-filter w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+              <option value="">All Sports</option>
+              {allSports.map(sport => (
+                <option value={sport}>{sport.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <!-- Year Filter -->
+        <div class="flex-1 min-w-32">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Year</label>
+          <select class="year-filter w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+            <option value="">All Years</option>
+            {[...new Set(projects.map(p => p.year))].sort((a, b) => b - a).map(year => (
+              <option value={year}>{year}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Featured Filter -->
+        <div class="flex-1 min-w-32">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Featured</label>
+          <select class="featured-filter w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+            <option value="">All Projects</option>
+            <option value="true">Featured Only</option>
+            <option value="false">Non-Featured</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Projects Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+    {projects.map((project) => (
+      <div 
+        class="project-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        data-tags={(project.tags || []).join(',')}
+        data-sports={(project.sports || []).join(',')}
+        data-year={project.year}
+        data-featured={project.featured}
+        data-project-id={project.id}
+      >
+        <!-- Featured Badge -->
+        {project.featured && (
+          <div class="absolute top-4 left-4 z-10">
+            <span class="bg-primary-600 text-white px-2 py-1 text-xs font-semibold rounded-full">
+              Featured
+            </span>
+          </div>
+        )}
+
+        <!-- Clickable Project Image -->
+        <div 
+          class="relative h-48 bg-gray-200 cursor-pointer group"
+          onclick={`openProjectGallery('${project.id}', '${(project.title || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.images || []).replace(/"/g, '&quot;')})`}
+        >
+          {project.images[0] ? (
+            <img 
+              src={project.images[0].src} 
+              alt={project.images[0].alt}
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+            />
+          ) : null}
+          <!-- Placeholder for missing images -->
+          <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400" style="display: none;">
+            <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          
+          <!-- Overlay for multi-image projects -->
+          {(project.images || []).length > 1 && (
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <div class="bg-white bg-opacity-90 px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                View all {(project.images || []).length} images
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Project Content -->
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
+          <p class="text-gray-600 text-sm mb-4 line-clamp-3">{project.description}</p>
+          
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            {(project.tags || []).slice(0, 3).map(tag => (
+              <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                {tag.replace('-', ' ')}
+              </span>
+            ))}
+            {(project.tags || []).length > 3 && (
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                +{(project.tags || []).length - 3} more
+              </span>
+            )}
+          </div>
+
+          <!-- Meta Info -->
+          <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
+            <span>{project.year}</span>
+            <span>{(project.images || []).length} image{(project.images || []).length !== 1 ? 's' : ''}</span>
+          </div>
+
+          <!-- Navigation to Work Page Section -->
+          {project.workAnchor && (
+            <div class="mb-3">
+              <a 
+                href={project.workAnchor}
+                class="inline-flex items-center text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
+              >
+                View Project
+                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+          )}
+          
+          <!-- Click to view gallery for multi-image projects only -->
+          {(project.images || []).length > 1 && (
+            <div class="text-center">
+              <button 
+                onclick={`openProjectGallery('${project.id}', '${(project.title || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.images || []).replace(/"/g, '&quot;')})`}
+                class="text-sm text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              >
+                View all {(project.images || []).length} images →
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Gallery Modal -->
+  <div id="gallery-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-lg max-w-6xl w-full max-h-full overflow-hidden">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 id="gallery-title" class="text-xl font-semibold">Project Gallery</h3>
+        <button onclick="closeProjectGallery()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div id="gallery-content" class="p-6 max-h-96 overflow-y-auto">
+        <!-- Gallery images will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- No Results Message -->
+  <div id="no-results" class="hidden text-center py-12">
+    <div class="text-gray-500">
+      <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.076-2.319C7.76 12.68 9.818 12 12 12s4.24.68 6.076 1.681z" />
+      </svg>
+      <h3 class="text-lg font-medium text-gray-900 mb-2">No projects found</h3>
+      <p class="text-gray-500">Try adjusting your filters to see more results.</p>
+    </div>
+  </div>
+</div>
+
+{showFilters && (
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tagFilter = document.querySelector('.tag-filter');
+      const sportFilter = document.querySelector('.sport-filter');
+      const yearFilter = document.querySelector('.year-filter');
+      const featuredFilter = document.querySelector('.featured-filter');
+      const projectCards = document.querySelectorAll('.project-card');
+      const noResults = document.getElementById('no-results');
+
+      function filterProjects() {
+        const selectedTag = tagFilter?.value || '';
+        const selectedSport = sportFilter?.value || '';
+        const selectedYear = yearFilter?.value || '';
+        const selectedFeatured = featuredFilter?.value || '';
+
+        let visibleCount = 0;
+
+        projectCards.forEach(card => {
+          const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+          const cardSports = card.getAttribute('data-sports')?.split(',') || [];
+          const cardYear = card.getAttribute('data-year') || '';
+          const cardFeatured = card.getAttribute('data-featured') || '';
+
+          const matchesTag = !selectedTag || cardTags.includes(selectedTag);
+          const matchesSport = !selectedSport || cardSports.includes(selectedSport);
+          const matchesYear = !selectedYear || cardYear === selectedYear;
+          const matchesFeatured = !selectedFeatured || cardFeatured === selectedFeatured;
+
+          if (matchesTag && matchesSport && matchesYear && matchesFeatured) {
+            card.style.display = 'block';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      // Add event listeners
+      [tagFilter, sportFilter, yearFilter, featuredFilter].forEach(filter => {
+        filter?.addEventListener('change', filterProjects);
+      });
+    });
+  </script>
+)}
+
+<script>
+  // Gallery modal functionality
+  function openProjectGallery(projectId, projectTitle, images) {
+    const modal = document.getElementById('gallery-modal');
+    const title = document.getElementById('gallery-title');
+    const content = document.getElementById('gallery-content');
+    
+    // Set title
+    title.textContent = projectTitle;
+    
+    // Clear previous content
+    content.innerHTML = '';
+    
+    // Parse images if it's a string
+    let imageList = images;
+    if (typeof images === 'string') {
+      try {
+        imageList = JSON.parse(images.replace(/&quot;/g, '"'));
+      } catch (e) {
+        console.error('Error parsing images:', e);
+        imageList = [];
+      }
+    }
+    
+    // Create image grid
+    const grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
+    
+    imageList.forEach((image, index) => {
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'relative group cursor-pointer';
+      
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt;
+      img.className = 'w-full h-48 object-cover rounded-lg transition-transform group-hover:scale-105';
+      
+      // Add click handler to open lightbox
+      imageContainer.onclick = () => openLightbox(imageList, index);
+      
+      imageContainer.appendChild(img);
+      grid.appendChild(imageContainer);
+    });
+    
+    content.appendChild(grid);
+    
+    // Show modal
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProjectGallery() {
+    const modal = document.getElementById('gallery-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+  }
+
+  function openLightbox(images, startIndex) {
+    // Create lightbox overlay
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.className = 'fixed inset-0 bg-black bg-opacity-90 z-60 flex items-center justify-center p-4';
+    
+    let currentIndex = startIndex;
+    
+    const lightboxContent = document.createElement('div');
+    lightboxContent.className = 'relative max-w-5xl max-h-full';
+    
+    const img = document.createElement('img');
+    img.className = 'max-w-full max-h-full object-contain';
+    
+    const updateImage = () => {
+      img.src = images[currentIndex].src;
+      img.alt = images[currentIndex].alt;
+    };
+    
+    updateImage();
+    
+    // Navigation buttons
+    if (images.length > 1) {
+      const prevBtn = document.createElement('button');
+      prevBtn.innerHTML = '‹';
+      prevBtn.className = 'absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors';
+      prevBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+      };
+      
+      const nextBtn = document.createElement('button');
+      nextBtn.innerHTML = '›';
+      nextBtn.className = 'absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors';
+      nextBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+      };
+      
+      lightboxContent.appendChild(prevBtn);
+      lightboxContent.appendChild(nextBtn);
+    }
+    
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.className = 'absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors';
+    closeBtn.onclick = closeLightbox;
+    
+    lightboxContent.appendChild(img);
+    lightboxContent.appendChild(closeBtn);
+    lightbox.appendChild(lightboxContent);
+    
+    // Close on click outside image
+    lightbox.onclick = (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    };
+    
+    // Keyboard navigation
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft' && images.length > 1) {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+      } else if (e.key === 'ArrowRight' && images.length > 1) {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyPress);
+    
+    function closeLightbox() {
+      document.removeEventListener('keydown', handleKeyPress);
+      lightbox.remove();
+    }
+    
+    document.body.appendChild(lightbox);
+  }
+
+  // Close modal on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeProjectGallery();
+    }
+  });
+
+  // Close modal on click outside
+  document.addEventListener('click', function(e) {
+    const modal = document.getElementById('gallery-modal');
+    if (e.target === modal) {
+      closeProjectGallery();
+    }
+  });
+
+  // Highlight section animation function
+  function highlightSection(sectionId) {
+    // Allow some time for navigation to complete
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        // Add highlight animation
+        section.classList.add('highlight-pulse', 'border-2', 'rounded-lg');
+        section.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+        
+        // Remove highlight after animation
+        setTimeout(() => {
+          section.classList.remove('highlight-pulse', 'border-2', 'rounded-lg');
+          section.style.borderColor = '';
+        }, 2000);
+      }
+    }, 200);
+  }
+
+  // Make function globally available
+  window.highlightSection = highlightSection;
+</script>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Smooth highlight animation */
+  .highlight-pulse {
+    animation: highlight-pulse 2s ease-in-out;
+  }
+
+  @keyframes highlight-pulse {
+    0% {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      background-color: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.5);
+      transform: scale(1.02);
+    }
+    100% {
+      background-color: transparent;
+      border-color: transparent;
+      transform: scale(1);
+    }
+  }
+</style>
