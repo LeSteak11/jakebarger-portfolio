@@ -1,42 +1,26 @@
 {
   "category": "Gameday & Matchday Content",
-  "description": "Game day graphics, matchday previews, and live event content for SJSU Athletics",
+  "description": "Game day graphics, matchday previews, and live event content.",
   "projects": [
     {
-      "id": "gameday-001",
-      "title": "Men's Basketball Gameday Graphics",
-      "description": "Complete gameday graphic package for home and away games",
-      "tags": ["gameday", "basketball", "social-media"],
-      "images": [
-        {
-          "src": "/images/sjsu/gameday/mbb-homecoming.jpg",
-          "alt": "SJSU Men's Basketball Homecoming Game Graphic",
-          "caption": "Homecoming Game vs. Fresno State"
-        },
-        {
-          "src": "/images/sjsu/gameday/mbb-senior-night.jpg",
-          "alt": "SJSU Men's Basketball Senior Night Graphic",
-          "caption": "Senior Night Celebration Graphic"
-        }
-      ],
+      "src": "/images/sjsu/gameday/mbb-homecoming.jpg",
+      "alt": "SJSU Men's Basketball Homecoming Game",
+      "tags": ["gameday", "basketball", "homecoming"],
       "year": 2023,
-      "sports": ["basketball"],
       "featured": true
     },
     {
-      "id": "gameday-002",
-      "title": "Volleyball Match Graphics",
-      "description": "Volleyball match previews and result graphics",
-      "tags": ["volleyball", "match-preview", "results"],
-      "images": [
-        {
-          "src": "/images/sjsu/gameday/vb-match-preview.jpg",
-          "alt": "SJSU Volleyball Match Preview",
-          "caption": "Volleyball vs. Nevada Match Preview"
-        }
-      ],
+      "src": "/images/sjsu/gameday/mbb-senior-night.jpg",
+      "alt": "SJSU Men's Basketball Senior Night",
+      "tags": ["gameday", "basketball", "senior-night"],
       "year": 2023,
-      "sports": ["volleyball"],
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu/gameday/vb-match-preview.jpg",
+      "alt": "SJSU Volleyball Match Preview",
+      "tags": ["volleyball", "match-preview", "gameday"],
+      "year": 2023,
       "featured": false
     }
   ]

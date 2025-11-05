@@ -1,42 +1,26 @@
 {
   "category": "Promotional & Social Media",
-  "description": "Social media content, promotional graphics, and marketing materials for SJSU Athletics",
+  "description": "Social media content, promotional graphics, and marketing materials.",
   "projects": [
     {
-      "id": "social-001",
-      "title": "Social Media Campaign Graphics",
-      "description": "Instagram stories, posts, and promotional content for various sports",
-      "tags": ["social-media", "instagram", "promotion"],
-      "images": [
-        {
-          "src": "/images/sjsu/social/ig-story-template.jpg",
-          "alt": "SJSU Athletics Instagram Story Template",
-          "caption": "Instagram Story Template Design"
-        },
-        {
-          "src": "/images/sjsu/social/game-promo.jpg",
-          "alt": "SJSU Game Promotion Graphic",
-          "caption": "Game Day Promotion Social Graphic"
-        }
-      ],
+      "src": "/images/sjsu/social/ig-story-template.jpg",
+      "alt": "SJSU Athletics Instagram Story Template",
+      "tags": ["social-media", "instagram", "templates"],
       "year": 2023,
-      "sports": ["multi-sport"],
       "featured": true
     },
     {
-      "id": "social-002",
-      "title": "Recruitment Content",
-      "description": "Graphics supporting recruitment efforts across all sports",
-      "tags": ["recruitment", "prospects", "visits"],
-      "images": [
-        {
-          "src": "/images/sjsu/social/recruiting-graphic.jpg",
-          "alt": "SJSU Recruiting Graphic",
-          "caption": "Official Visit Announcement"
-        }
-      ],
+      "src": "/images/sjsu/social/game-promo.jpg",
+      "alt": "SJSU Game Promotion Graphic",
+      "tags": ["social-media", "promotion", "gameday"],
       "year": 2023,
-      "sports": ["football", "basketball"],
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu/social/recruiting-graphic.jpg",
+      "alt": "SJSU Recruiting Graphic",
+      "tags": ["recruitment", "prospects", "social-media"],
+      "year": 2023,
       "featured": false
     }
   ]

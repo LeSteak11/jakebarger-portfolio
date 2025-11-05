@@ -1,0 +1,111 @@
+{
+  "category": "Performance Highlights",
+  "description": "Awards, achievements, and statistical graphics.",
+  "images": [
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_Coach100Wins_2023.jpg",
+      "alt": "Baseball Coach 100 Wins Achievement",
+      "tags": ["awards", "baseball", "milestone"],
+      "year": 2023,
+      "featured": true
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Baseball_ColettePOTW-IG_2023.jpg",
+      "alt": "Baseball Player of the Week - Colette",
+      "tags": ["awards", "baseball", "weekly"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_GYM_JaudaiSchoolRecord_2023.jpg",
+      "alt": "Gymnastics School Record - Jaudai",
+      "tags": ["records", "gymnastics", "achievement"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MBB_Omari1k_2023.jpg",
+      "alt": "Men's Basketball 1000 Points - Omari",
+      "tags": ["milestone", "basketball", "records"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MGolf_CorpusPOTW_2023.jpg",
+      "alt": "Men's Golf Player of the Week - Corpus",
+      "tags": ["awards", "golf", "weekly"],
+      "year": 2023,
+      "featured": true
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__AllMWPreseason_Fall2023.jpg",
+      "alt": "Men's Soccer All-MW Preseason Selection",
+      "tags": ["awards", "soccer", "preseason"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__Clinched_Fall2023.jpg",
+      "alt": "Men's Soccer Tournament Qualification",
+      "tags": ["achievement", "soccer", "tournament"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__SeniorDay_Fall2023.jpg",
+      "alt": "Men's Soccer Senior Day Celebration",
+      "tags": ["celebration", "soccer", "seniors"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__SweeneySaves_Fall2023.jpg",
+      "alt": "Men's Soccer Goalkeeper Saves Record",
+      "tags": ["records", "soccer", "goalkeeper"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_MSOC__WACAward1_Fall2023.jpg",
+      "alt": "Men's Soccer WAC Conference Award",
+      "tags": ["awards", "soccer", "conference"],
+      "year": 2023,
+      "featured": true
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Softball_FOTW-Noreiga_2023.jpg",
+      "alt": "Softball Fan of the Week - Noreiga",
+      "tags": ["recognition", "softball", "fans"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Softball_UlluegePOTW_2023.jpg",
+      "alt": "Softball Player of the Week - Ulluege",
+      "tags": ["awards", "softball", "weekly"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_Tennis_AllMW-Millan_2023.jpg",
+      "alt": "Tennis All-MW Team Selection - Millan",
+      "tags": ["awards", "tennis", "conference"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Slusser-AllMW_Fall2023.jpg",
+      "alt": "Volleyball All-MW Selection - Slusser",
+      "tags": ["awards", "volleyball", "conference"],
+      "year": 2023,
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu-athletics/performance-highlights-sjsu/SJSU_VB_Tia-MWFreshman_Fall2023.jpg",
+      "alt": "Volleyball MW Freshman Award - Tia",
+      "tags": ["awards", "volleyball", "freshman"],
+      "year": 2023,
+      "featured": true
+    }
+  ]
+}

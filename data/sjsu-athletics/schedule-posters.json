@@ -1,42 +1,26 @@
 {
   "category": "Schedule & Tournament Posters",
-  "description": "Creative schedule posters and tournament announcements for SJSU Athletics teams",
+  "description": "Creative schedule posters and tournament announcements.",
   "projects": [
     {
-      "id": "schedule-001",
-      "title": "Fall 2023 Schedule Posters",
-      "description": "Complete set of fall schedule posters for multiple sports",
-      "tags": ["schedules", "graphic-design", "sports"],
-      "images": [
-        {
-          "src": "/images/sjsu/schedules/fall-2023-soccer.jpg",
-          "alt": "SJSU Men's Soccer Fall 2023 Schedule",
-          "caption": "Men's Soccer Fall 2023 Schedule Poster"
-        },
-        {
-          "src": "/images/sjsu/schedules/fall-2023-volleyball.jpg",
-          "alt": "SJSU Volleyball Fall 2023 Schedule",
-          "caption": "Women's Volleyball Fall 2023 Schedule Poster"
-        }
-      ],
+      "src": "/images/sjsu/schedules/fall-2023-soccer.jpg",
+      "alt": "SJSU Men's Soccer Fall 2023 Schedule",
+      "tags": ["schedules", "soccer", "fall"],
       "year": 2023,
-      "sports": ["soccer", "volleyball", "basketball"],
       "featured": true
     },
     {
-      "id": "schedule-002",
-      "title": "Tournament Bracket Graphics",
-      "description": "Dynamic tournament brackets and championship graphics",
-      "tags": ["tournaments", "brackets", "championships"],
-      "images": [
-        {
-          "src": "/images/sjsu/tournaments/mw-tournament.jpg",
-          "alt": "Mountain West Tournament Bracket",
-          "caption": "Mountain West Conference Tournament Bracket"
-        }
-      ],
+      "src": "/images/sjsu/schedules/fall-2023-volleyball.jpg",
+      "alt": "SJSU Volleyball Fall 2023 Schedule",
+      "tags": ["schedules", "volleyball", "fall"],
       "year": 2023,
-      "sports": ["basketball", "volleyball"],
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu/tournaments/mw-tournament.jpg",
+      "alt": "Mountain West Tournament Bracket",
+      "tags": ["tournaments", "brackets", "basketball"],
+      "year": 2023,
       "featured": false
     }
   ]

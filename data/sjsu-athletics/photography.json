@@ -1,42 +1,26 @@
 {
   "category": "Photography Highlights",
-  "description": "Action photography and behind-the-scenes captures from SJSU Athletics events",
+  "description": "Action photography and behind-the-scenes captures.",
   "projects": [
     {
-      "id": "photo-001",
-      "title": "Game Action Photography",
-      "description": "Action shots from key games and competitions across all sports",
-      "tags": ["photography", "action-shots", "sports"],
-      "images": [
-        {
-          "src": "/images/sjsu/photography/mbb-action-1.jpg",
-          "alt": "SJSU Men's Basketball Action Shot",
-          "caption": "Fast break action during Mountain West game"
-        },
-        {
-          "src": "/images/sjsu/photography/vb-spike.jpg",
-          "alt": "SJSU Volleyball Spike",
-          "caption": "Powerful spike during conference championship"
-        }
-      ],
+      "src": "/images/sjsu/photography/mbb-action-1.jpg",
+      "alt": "SJSU Men's Basketball Action Shot",
+      "tags": ["photography", "action-shots", "basketball"],
       "year": 2023,
-      "sports": ["basketball", "volleyball"],
       "featured": true
     },
     {
-      "id": "photo-002",
-      "title": "Behind-the-Scenes Coverage",
-      "description": "Candid moments and team culture photography",
-      "tags": ["behind-the-scenes", "team-culture", "candid"],
-      "images": [
-        {
-          "src": "/images/sjsu/photography/team-huddle.jpg",
-          "alt": "SJSU Team Huddle",
-          "caption": "Pre-game team huddle moment"
-        }
-      ],
+      "src": "/images/sjsu/photography/vb-spike.jpg",
+      "alt": "SJSU Volleyball Spike",
+      "tags": ["photography", "action-shots", "volleyball"],
       "year": 2023,
-      "sports": ["multi-sport"],
+      "featured": false
+    },
+    {
+      "src": "/images/sjsu/photography/team-huddle.jpg",
+      "alt": "SJSU Team Huddle",
+      "tags": ["photography", "behind-the-scenes", "team-culture"],
+      "year": 2023,
       "featured": false
     }
   ]
