@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import TagFilter from '../components/TagFilter.astro';
+
+// Import all project data
+import sjsuSchedules from '../../data/sjsu-athletics/schedule-posters.json';
+import sjsuGameday from '../../data/sjsu-athletics/gameday-content.json';
+import sjsuAwards from '../../data/sjsu-athletics/awards-achievements.json';
+import sjsuStats from '../../data/sjsu-athletics/stat-graphics.json';
+import sjsuSocial from '../../data/sjsu-athletics/social-promo.json';
+import sjsuPhotography from '../../data/sjsu-athletics/photography.json';
+import calStats from '../../data/cal-football/stats-awards.json';
+import calGameday from '../../data/cal-football/gameday-campaigns.json';
+import calRecruiting from '../../data/cal-football/recruiting.json';
+
+// Combine all projects into one array
+const allProjects = [
+  ...sjsuSchedules.projects,
+  ...sjsuGameday.projects,
+  ...sjsuAwards.projects,
+  ...sjsuStats.projects,
+  ...sjsuSocial.projects,
+  ...sjsuPhotography.projects,
+  ...calStats.projects,
+  ...calGameday.projects,
+  ...calRecruiting.projects
+];
+
+// Get unique tags for filtering
+const allTags = [...new Set(allProjects.flatMap(p => p.tags))];
+
+// Featured projects
+const featuredProjects = allProjects.filter(p => p.featured);
+---
+
+<Layout title="Work - Jake Barger Portfolio">
+  <!-- Hero Section -->
+  <section class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">My Work</h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          A comprehensive portfolio of sports design and photography work spanning multiple athletic programs and design categories.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#featured" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors">
+            View Featured Work
+          </a>
+          <a href="#all-projects" class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
+            Browse All Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Categories -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Program Categories</h2>
+        <p class="text-lg text-gray-600">Explore work organized by athletic program and content type.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <!-- SJSU Athletics Card -->
+        <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-8 text-white">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold">SJSU Athletics</h3>
+          </div>
+          <p class="text-blue-100 mb-6">
+            Comprehensive visual content for 17+ sports teams including schedules, gameday graphics, social media, and photography.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Schedule Posters</span>
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Gameday Graphics</span>
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Photography</span>
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Social Media</span>
+          </div>
+          <a href="/work/sjsu-athletics" class="inline-flex items-center text-white font-semibold hover:text-blue-200 transition-colors">
+            View SJSU Work
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Cal Football Card -->
+        <div class="bg-gradient-to-br from-yellow-600 to-yellow-800 rounded-lg p-8 text-white">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold">Cal Football</h3>
+          </div>
+          <p class="text-yellow-100 mb-6">
+            Game posters, recruiting materials, statistical graphics, and promotional content for Cal Football program.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Game Posters</span>
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Recruiting</span>
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Statistics</span>
+            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">Awards</span>
+          </div>
+          <a href="/work/cal-football" class="inline-flex items-center text-white font-semibold hover:text-yellow-200 transition-colors">
+            View Cal Work
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Work Section -->
+  <section id="featured" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+        <p class="text-lg text-gray-600">Highlighted work showcasing the best of each category.</p>
+      </div>
+      
+      <ProjectGrid projects={featuredProjects} />
+    </div>
+  </section>
+
+  <!-- All Projects Section -->
+  <section id="all-projects" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">All Projects</h2>
+        <p class="text-lg text-gray-600">
+          Browse the complete portfolio with advanced filtering options.
+        </p>
+      </div>
+
+      <!-- Tag Filter Component -->
+      <div class="mb-8">
+        <TagFilter tags={allTags} placeholder="Filter by category, sport, or content type..." />
+      </div>
+
+      <!-- Projects Grid with Filtering -->
+      <ProjectGrid projects={allProjects} showFilters={true} />
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-4">Like What You See?</h2>
+      <p class="text-xl text-gray-300 mb-8">
+        Let's discuss how I can help elevate your sports program's visual content.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors">
+          Start a Project
+        </a>
+        <a href="/experience" class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-colors">
+          View Experience
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
